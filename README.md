@@ -1,5 +1,9 @@
 # 337-Final-Project
 
+Installation Instructions
+
+Install PixiJS by running the command:
+npm install pixi.js
 
 3/21 
 
