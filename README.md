@@ -30,4 +30,5 @@ Outline:
 - Hurt Boxes 
 - Antagonist 
 - Power up 
-- Scene/Level
+- Scene/Level/ 
+- Level Transition
