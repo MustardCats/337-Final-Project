@@ -18,6 +18,11 @@ const app = new Application( {
 
 document.body.appendChild(app.view);
 
+async function startApp() {
+    const test = await PIXI.Assets.load('sprites/test.png');
+    startLevel();
+}
+startApp();
 /*
     End of testing code
 */
