@@ -24,7 +24,7 @@ function gameLoop() {
         num++;
         console.log(num);
     }
-
+    
     window.requestAnimationFrame(gameLoop);
 }
 
