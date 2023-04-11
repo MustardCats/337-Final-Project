@@ -2,7 +2,6 @@
     Server side code to interact with the database.
 */
 
-
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -18,9 +17,6 @@ mongoose.connect(connection_string, {useNewUrlParser: true});
 mongoose.connection.on('error',() => {
     console.log("There was a problem connecting to the database.");
 });
-
-
-
 
 app.listen(port, () => {
     console.log(`Server listening on ${port}`)

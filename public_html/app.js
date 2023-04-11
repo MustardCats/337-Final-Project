@@ -8,7 +8,6 @@
 /*
     Below code is for testing purposes, feel free to remove. 
 */
-
 const Application = PIXI.Application;
 
 const app = new Application( {
@@ -18,6 +17,27 @@ const app = new Application( {
 
 document.body.appendChild(app.view);
 
+let num = 0;
+
+function gameLoop() {
+    if (isKeyDown('A')) {
+        num++;
+        console.log(num);
+    }
+
+    window.requestAnimationFrame(gameLoop);
+}
+
+async function startApp() {
+    //const test = await PIXI.Assets.load('sprites/test.png');
+    window.addEventListener("keydown", keyDown);
+    window.addEventListener("keyup", keyUp);
+    let delta = 0.0;
+    startLevel(app);
+    gameLoop();
+}
+
+startApp();
 /*
     End of testing code
 */
