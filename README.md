@@ -5,6 +5,9 @@ Installation Instructions
 Install PixiJS by running the command:
 npm install pixi.js
 
+Install jsdelivr by running the command:
+npm install jsdelivr
+
 3/21 
 
 Goal: 2d platformer, sim to kirby/ Mario
