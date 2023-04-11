@@ -8,6 +8,9 @@ npm install pixi.js
 Install jsdelivr by running the command:
 npm install jsdelivr
 
+Install PixiJS input by running the command:
+npm install --save pixi.js-keyboard pixi.js-mouse
+
 3/21 
 
 Goal: 2d platformer, sim to kirby/ Mario
