@@ -45,6 +45,13 @@ function authenticate(username,password) {
     return h;
 }
 
+app.get('/',(req,res) => {
+    res.sendFile(__dirname + '/public_html/index.html');
+})
+
+app.post('/add/user',async (req,res) => {
+
+});
 
 app.listen(port, () => {
     console.log(`Server listening on ${port}`)
