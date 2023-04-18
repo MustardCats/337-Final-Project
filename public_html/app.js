@@ -15,7 +15,7 @@ const app = new Application( {
     height: 500
 });
 
-document.body.appendChild(app.view);
+document.getElementById('gameWindow').appendChild(app.view);
 
 let num = 0;
 let deltaTime = 0.0;
