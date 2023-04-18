@@ -18,13 +18,26 @@ const app = new Application( {
 document.body.appendChild(app.view);
 
 let num = 0;
+let deltaTime = 0.0;
+let start = Date.now();
+let renderer = PIXI.autoDetectRenderer(720, 1280);
+
+let player = new Character(-2, -2);
 
 function gameLoop() {
-    if (isKeyDown('A')) {
-        num++;
-        console.log(num);
-    }
-    
+    let end = Date.now();
+    deltaTime = (end - start) / 1000.0;
+    start = end;
+
+    console.log("Camera: " + camX + " " + camY + " Player: " + player.x + " " + player.y);
+    // input
+    handleInput(player, deltaTime);
+    // update
+    player.update(deltaTime);
+    setCamPos(-(player.x * 16) + 250, (player.y * 16) + 250);
+    setLevelCameraOffset(camX, camY);
+    player.setOffset(camX, camY);
+    // render
     window.requestAnimationFrame(gameLoop);
 }
 
@@ -34,6 +47,7 @@ async function startApp() {
     window.addEventListener("keyup", keyUp);
     let delta = 0.0;
     startLevel(app);
+    app.stage.addChild(player.sprite);
     gameLoop();
 }
 
