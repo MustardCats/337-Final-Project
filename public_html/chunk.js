@@ -18,18 +18,23 @@ class Chunk {
     }
 
     loadTiles() {
-        console.log('ear');
         // test chunk
         for (let i = 0; i < chunkSize * chunkSize; i++) {
-            this.tiles.push(1);
+            if ((Math.floor(i / chunkSize)) % 5 == 0)
+                this.tiles.push(1);
+            else {
+                this.tiles.push(0);
+            }
         }
         for (let i = 0; i < this.tiles.length; i++) {
             // TODO: load sprites in a seperate space
-            const sprite = PIXI.Sprite.from("./sprites/test.png");
-            sprite.position.set((i % chunkSize) * tileSize, (Math.floor(i / chunkSize)) * tileSize);
-            sprite.width = 16;
-            sprite.height = 16;
-            this.container.addChild(sprite);
+            if (this.tiles[i] == 1) {
+                const sprite = PIXI.Sprite.from("./sprites/test.png");
+                sprite.position.set((i % chunkSize) * tileSize, -(Math.floor(i / chunkSize)) * tileSize);
+                sprite.width = 16;
+                sprite.height = 16;
+                this.container.addChild(sprite);
+            }
         }
     }
 
@@ -43,6 +48,6 @@ class Chunk {
 
     setOffset(offsetX, offsetY) {
         //console.log("setting offset " + offsetX + " " + offsetY + " for chunk " + x + " " + y);
-        this.container.position.set(chunkPixelSize * this.x + offsetX, chunkPixelSize * this.y + offsetY - chunkPixelSize);
+        this.container.position.set(chunkPixelSize * this.x + offsetX, -chunkPixelSize * this.y + offsetY);
     }
 }

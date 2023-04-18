@@ -33,4 +33,7 @@ function handleInput(player, deltaTime) {
     if (isKeyDown('W')) {
         player.setMove(0, 1);
     }
+    if (isKeyPress('P')) {
+        console.log("Player Pos: " + player.x + " " + player.y);
+    }
 }

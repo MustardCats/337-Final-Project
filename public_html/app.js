@@ -22,17 +22,19 @@ let deltaTime = 0.0;
 let start = Date.now();
 let renderer = PIXI.autoDetectRenderer(720, 1280);
 
-let player = new Character(-2, -2);
+let player = new Character(10, 11);
 
 function gameLoop() {
     let end = Date.now();
     deltaTime = (end - start) / 1000.0;
     start = end;
 
-    console.log("Camera: " + camX + " " + camY + " Player: " + player.x + " " + player.y);
+    //console.log("Camera: " + camX + " " + camY + " Player: " + player.x + " " + player.y);
     // input
     handleInput(player, deltaTime);
     // update
+    deleteChunks(app, player.x, player.y);
+    loadChunks(app, player.x, player.y);
     player.update(deltaTime);
     setCamPos(-(player.x * 16) + 250, (player.y * 16) + 250);
     setLevelCameraOffset(camX, camY);
