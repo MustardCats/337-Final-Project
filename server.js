@@ -6,8 +6,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const md5 = require('md5');
 const cookieParser = require('cookie-parser');
-const connection_string = 'mongodb://127.0.0.1/DATABASE_NAME'
-const port = 3000;
+const connection_string = 'mongodb://127.0.0.1/GameDB'
+const port = 8080;
 const app = express();
 
 app.use(express.static('public_html'));
@@ -45,9 +45,6 @@ function authenticate(username,password) {
     return h;
 }
 
-app.get('/',(req,res) => {
-    res.sendFile(__dirname + '/public_html/index.html');
-})
 
 app.post('/add/user',async (req,res) => {
 

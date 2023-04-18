@@ -9,12 +9,16 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
+
+
     <div id="middleColumn">
         <div id="gameWindowPlaceHolder">
             
             <div id="gameWindow">
                 Game window
                 <a href="game.html">TestGame</a>
+                <button onclick="showAddUserPopup()">AddUser</button>
+                <button onclick="showLoginPopup()">Login</button>
             </div>
         </div>
         <div id="infoWindow">
@@ -72,12 +76,36 @@
             </div>
         </div>
     </div>
-    <div>
-
+    <!--Popup area for login-->
+    <div class="container-popup" id="loginPopup" style="display:none;">
+        <div class="popup">Hello
+            <div>
+                <label >Username</label>
+                <input type="text" placeholder="ex: JohnDoe">
+                Login Fields
+            </div>
+            <div>
+                <button onclick="exitPopup()">Login/Exit Popup</button>
+                <img onclick="exitPopup()" class="exitImage" src="./images/xImage.png">
+            </div>
+        </div>
+        
     </div>
-    <div>
-
+    
+    <div class="container-popup" id="addUserPopup" style="display: none;">
+        <div class="popup">Hello
+            <div> 
+                Add User Fields
+            </div>
+            <div>
+                <button onclick="exitPopup()">Add User/Exit Popup</button>
+                <img onclick="exitPopup()" class="exitImage" src="./images/xImage.png">
+            </div>
+        </div>
     </div>
+    
+
+
     <script src="./code.js"></script>
 
 </body>
