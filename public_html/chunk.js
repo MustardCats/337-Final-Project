@@ -1,5 +1,6 @@
 const chunkSize = 8; // number of tiles in each dimension
 const tileSize = 16; // number of pixels for each tile
+const chunkPixelSize = chunkSize * tileSize; // number of pixels for each chunk
 
 const tileSpriteMappings = new Map([
     [1, "./sprites/test.png"]
@@ -10,9 +11,10 @@ class Chunk {
     y = 0;
     tiles = [];
     container = new PIXI.Container();
+
     constructor(x, y) {
-        x = x;
-        y = y;
+        this.x = x;
+        this.y = y;
     }
 
     loadTiles() {
@@ -37,5 +39,10 @@ class Chunk {
 
     setTile(x, y, id) {
         this.tiles[y * chunkSize + x] = id;
+    }
+
+    setOffset(offsetX, offsetY) {
+        //console.log("setting offset " + offsetX + " " + offsetY + " for chunk " + x + " " + y);
+        this.container.position.set(chunkPixelSize * this.x + offsetX, chunkPixelSize * this.y + offsetY - chunkPixelSize);
     }
 }
