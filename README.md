@@ -8,6 +8,15 @@ npm install pixi.js
 Install jsdelivr by running the command:
 npm install jsdelivr
 
+Install cookie-parser by running the command: 
+npm install cookie-parser
+
+cookie-parser is required so that we can keep track of who is logged in or not. 
+
+Install md5 by running the command:
+npm install md5
+
+md5 is required for hashing purposes and keeping the passwords safe.
 3/21 
 
 Goal: 2d platformer, sim to kirby/ Mario

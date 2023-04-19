@@ -6,13 +6,70 @@
 
 
 //Adding the user. 
+//
+
+/**
+ * <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+    <script src="./camera.js"></script>
+    <script src="./input.js"></script>
+    <script src="./level.js"></script>
+    <script src="./chunk.js"></script>
+    <script src="./character.js"></script>
+    <script src="./app.js"></script>
+ */
+function loadGame () {
+    var scripts = ['./camera.js',
+        './input.js',
+        './level.js',
+        './chunk.js',
+        './character.js',
+        './app.js']
+    scripts.forEach(script => {
+        console.log(script);
+        var scriptToAdd = document.createElement('script');
+        scriptToAdd.setAttribute('src',script);
+        scriptToAdd.async = false;  
+        document.body.appendChild(scriptToAdd);
+    });
+    document.getElementById('playGameButton').style.display = "none";
+    
+}
 
 function addUser() {
     let url = '/add/user';
-    
-    
+    let u = document.getElementById('addUserField')
+    let ps = document.getElementById('addUserPassword');
+    if(u.value == '' || ps.value == '') {
+        console.log('Fields cannot be empty');
+        return;
+    }
+    let p = fetch(url, {
+        method: "POST",
 
+        body: JSON.stringify({
+            username: u.value,
+            password: ps.value
+        }),
 
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Timestamp": Date.now()
+        }
+    });
+    let p2 = p.then((res) => {
+        return res.text();
+    }).then((text) => {
+        console.log(text);
+    }).catch((err) => {
+        console.log(err);
+    });
+    u.value = '';
+    ps.value = '';
+    exitPopup();
+}
+
+function login() {
+    let url = '/login/'
 }
 
 function showLoginPopup() {

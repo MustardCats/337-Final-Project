@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <!--
     This is the html page for the actual game, we can swap to display it on button click/request
+    EDIT: game.html is now deprecated, everything should load onto the main index.html
+    game.html will be kept for records and backup
+
 -->
 <html lang="en">
 <head>
@@ -24,7 +27,38 @@
 
             <div id="highScore">
                 <!--Needs a table element-->
-                Highscore Window
+                <table id="highscoreTable">
+                    <tr>
+                        <th>Rank </th>
+                        <th class="nameCol">Name</th>
+                        <th class="scoreCol">Time</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td class="nameCol">User</td>
+                        <td class="scoreCol">Time</td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td class="nameCol">User</td>
+                        <td class="scoreCol">Time</td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td class="nameCol">User</td>
+                        <td class="scoreCol">Time</td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td class="nameCol">User</td>
+                        <td class="scoreCol">Time</td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td class="nameCol">User</td>
+                        <td class="scoreCol">Time</td>
+                    </tr>
+                </table>
             </div>
 
             <div id="story">

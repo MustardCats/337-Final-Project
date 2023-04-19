@@ -11,10 +11,10 @@ body {
 
 #middleColumn {
     position: relative;
-    width: 60vw;
+    width: 750px;
     height: 100%;
-    left: 20vw;
-    right: 40vw;
+    right: 30%;
+    left:30%;
     background-color: aquamarine;
 }
 
@@ -44,9 +44,18 @@ body {
     background-color: yellow;
 }
 
+.accountButton {
+    margin-left: 1%;
+
+}
+
+.accountButton:hover {
+    cursor: pointer;
+}
+
 #highScore {
     position: absolute;
-    top: 5%;
+    top: 10%;
     right: 0;
     width: 33.3%;
     border: 2px dotted blue;
@@ -56,7 +65,7 @@ body {
     position:absolute;
     left: 0;
     width: 50%;
-    top:5%;
+    top:10%;
     height: 35%;
     border: 2px dotted green;
     margin-left: 1%;
@@ -70,9 +79,9 @@ body {
     position:absolute;
     left: 0;
     width: 50%;
-    top:40%;
+    top:45%;
     height: 35%;
-    border: 2px dotted yellow;
+    border: 2px dotted purple;
     margin-left: 1%;
 }
 
@@ -89,19 +98,18 @@ popups
 */
 
 .container-popup {
-    position: relative;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0,0,0,.5);
+    background: rgba(39, 39, 39, 0.596);
 }
 
 .popup {
     width: 50%;
     height: 50%;
-    background: #1abcb9;
+    background: rgb(206, 234, 247);
     position: absolute;
     z-index: 1;
     top: 0;
@@ -109,6 +117,45 @@ popups
     bottom: 0;
     left: 0;
     margin: auto;
+    font-family: 'Lucida Bright';
+}
+
+.accountConfirmationButton {
+    transition-duration: 0.4s;
+    position: absolute;
+    font-family: 'Lucida Bright';
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+    background-color:rgb(255, 255, 255);;
+    border-radius: 15px;
+    border: 1px solid rgb(255, 255, 255);
+    width: 40%;
+    padding: 10px;
+    bottom:15%;
+    left:30%;
+    
+}
+.accountConfirmationButton:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+}
+.popup-button-container {
+    position: absolute;
+    bottom:0;
+    margin-bottom: 1%;
+    width: 100%;
+    height: 30%;
+    text-align: center;
+}
+
+.popup-border {
+    position: absolute;
+    background: rgba(0,0,0,0);
+    bottom: 4%;
+    top: 4%;
+    left: 4%;
+    right: 4%;
+    border: 2px dotted green ;
 }
 
 .exitImage {
@@ -117,4 +164,21 @@ popups
     right: 0;
     max-width: 5%;
     max-height: 5%;
+}
+
+.exitImage:hover {
+    cursor: pointer;
+}
+
+
+.accountForm {
+    display: table;
+}
+
+.accountFormRow {
+    display: table-row;
+}
+
+.accountFormCell {
+    display: table-cell;
 }

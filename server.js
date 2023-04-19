@@ -47,7 +47,33 @@ function authenticate(username,password) {
 
 
 app.post('/add/user',async (req,res) => {
+    let u = req.body.username;
+    let p = req.body.password;
+    let hash = authenticate(u,p);
 
+    let e = await User.exists({hashedPsw: hash});
+    if(e) {
+        res.end('Cannot make that user');
+    }else {
+        //I do the check for username and etc client side.
+        var user = new User( {
+            bestTime: 0,
+            username: u,
+            hashedPsw: hash,
+            levelProg: 0
+        });
+
+        let prom = user.save();//We wait for the user to be saved into the DB
+        prom.then((doc)=>{
+            console.log('user saved');
+            
+        }).catch((err) => {
+            console.log(err);
+            res.end('user failed to create');
+        })
+        res.end('User saved');
+        //We add cookie functionality later
+    }
 });
 
 app.listen(port, () => {

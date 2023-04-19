@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kirby but Blue versus Protein Kirby (Tentative)</title>
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
 </head>
 <body>
 
@@ -16,12 +17,15 @@
             
             <div id="gameWindow">
                 Game window
-                <a href="game.html">TestGame</a>
-                <button onclick="showAddUserPopup()">AddUser</button>
-                <button onclick="showLoginPopup()">Login</button>
+                <button id="playGameButton" onclick="loadGame()">play game</button>
             </div>
         </div>
         <div id="infoWindow">
+            <div>
+                <button class="accountButton" onclick="showLoginPopup()">Login</button>
+                <button class="accountButton" onclick="showAddUserPopup()">Register</button>
+                <span style="display:none;">Logged in as:</span>
+            </div>
             <div id="instructions">
                 <h5 id="instruct">How to play:</h5>
                 <p>
@@ -78,28 +82,50 @@
     </div>
     <!--Popup area for login-->
     <div class="container-popup" id="loginPopup" style="display:none;">
-        <div class="popup">Hello
-            <div>
-                <label >Username</label>
-                <input type="text" placeholder="ex: JohnDoe">
-                Login Fields
+        <div class="popup">
+            <div class="popup-border">
+                <form class="accountForm">
+                    <p class="accountFormRow">
+                        <label class="accountFormCell" id="loginUserFieldLabel" for="addUserField" >Username:</label>
+                        <input class="accountFormCell" type="text" placeholder="ex: JohnDoe" name="loginUserField" id="loginUserField">
+                    </p>
+                    <p class="accountFormRow">
+                        <label class="accountFormCell" id="loginUserPasswordLabel" for="loginUserPassword" >Password:</label>
+                        <input class="accountFormCell" type="password" placeholder="ex: ex@mple2023" name="loginUserPassword" id="loginUserPassword">
+                    </p>
+                </form>
             </div>
             <div>
-                <button onclick="exitPopup()">Login/Exit Popup</button>
+               
                 <img onclick="exitPopup()" class="exitImage" src="./images/xImage.png">
+            </div>
+            <div class="popup-button-container">
+                <button class = "accountConfirmationButton" onclick="exitPopup()">Login</button>
+                
             </div>
         </div>
         
     </div>
-    
+    <!--Add User Popup-->
     <div class="container-popup" id="addUserPopup" style="display: none;">
-        <div class="popup">Hello
-            <div> 
-                Add User Fields
+        <div class="popup">
+            <div class="popup-border">
+                <form class="accountForm">
+                    <p class="accountFormRow">
+                        <label class="accountFormCell" id="addUserFieldLabel" for="addUserField" >Username:</label>
+                        <input class="accountFormCell" type="text" placeholder="ex: JohnDoe" name="addUserField" id="addUserField">
+                    </p>
+                    <p class="accountFormRow">
+                        <label class="accountFormCell" id="addUserPasswordLabel" for="addUserPassword" >Password:</label>
+                        <input class="accountFormCell" type="password" placeholder="ex: ex@mple2023" name="addUserPassword" id="addUserPassword">
+                    </p>
+                </form>
             </div>
-            <div>
-                <button onclick="exitPopup()">Add User/Exit Popup</button>
+            <div> 
                 <img onclick="exitPopup()" class="exitImage" src="./images/xImage.png">
+            </div>
+            <div class="popup-button-container">
+                <button class = "accountConfirmationButton"  onclick="addUser()">Register</button>
             </div>
         </div>
     </div>
