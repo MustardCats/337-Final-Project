@@ -20,10 +20,30 @@ class Chunk {
     loadTiles() {
         // test chunk
         for (let i = 0; i < chunkSize * chunkSize; i++) {
-            if ((Math.floor(i / chunkSize)) % 5 == 0)
-                this.tiles.push(1);
+            if (this.y == 0) {
+                if ((Math.floor(i / chunkSize)) == 1) {
+                    this.tiles[i] = 1;
+                }
+                else if (((Math.floor(i / chunkSize)) == 6) &&
+                    (i % chunkSize) > 3 && (i % chunkSize) < 6) {
+                    this.tiles[i] = 1;
+                }
+                else {
+                    this.tiles[i] = 0;
+                }
+            }
+            else if (this.y > 1) {
+                if ((Math.floor(i / chunkSize)) == 7 ||
+                    (Math.floor(i / chunkSize)) == 0 ||
+                    (i % chunkSize) == 7 || (i % chunkSize) == 0) {
+                    this.tiles[i] = 1;
+                }
+                else {
+                    this.tiles[i] = 0;
+                }
+            }
             else {
-                this.tiles.push(0);
+                this.tiles[i] = 0;
             }
         }
         for (let i = 0; i < this.tiles.length; i++) {

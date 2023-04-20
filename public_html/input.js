@@ -1,14 +1,21 @@
 
 let keys = {};
 let prev_keys = {};
+const MAXKEYCODES = 256;
+
+for (let i = 0; i < MAXKEYCODES; i++) {
+    keys[i] = false;
+    prev_keys[i] = false;
+}
 
 function keyDown(e) {
-    prev_keys[e.keyCode] = keys[e.keyCode];
     keys[e.keyCode] = true;
+    if (keys[e.keyCode] && !prev_keys[e.keyCode]) {
+        console.log('tap');
+    }
 }
 
 function keyUp(e) {
-    prev_keys[e.keyCode] = keys[e.keyCode];
     keys[e.keyCode] = false;
 }
 
@@ -35,5 +42,13 @@ function handleInput(player, deltaTime) {
     }
     if (isKeyPress('P')) {
         console.log("Player Pos: " + player.x + " " + player.y);
+    }
+    if (isKeyPress('F')) {
+        player.toggleDebugMode();
+    }
+
+    // allows single key taps to function
+    for (let i = 0; i < MAXKEYCODES; i++) {
+        prev_keys[i] = keys[i];
     }
 }
