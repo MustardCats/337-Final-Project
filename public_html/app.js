@@ -21,14 +21,13 @@ let deltaTime = 0.0;
 let start = Date.now();
 let renderer = PIXI.autoDetectRenderer(720, 1280);
 
-let player = new Character(10, 11);
+let player = new Character(10, 20);
 
 function gameLoop() {
+    // time
     let end = Date.now();
     deltaTime = (end - start) / 1000.0;
     start = end;
-
-    //console.log("Camera: " + camX + " " + camY + " Player: " + player.x + " " + player.y);
     // input
     handleInput(player, deltaTime);
     // update

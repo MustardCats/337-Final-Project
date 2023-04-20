@@ -2,19 +2,22 @@
 class Character {
     x = 0.0;
     y = 0.0;
-    sprite = PIXI.Sprite.from("./sprites/test.png");
+    sprite = PIXI.Sprite.from("./sprites/buff kirby left.png");
     moveX = 0;
     moveY = 0;
+    spawnX = 5;
+    spawnY = 3;
     radius = 8;
     velocityX = 0.0;
     velocityY = 0.0;
-    isGrounded = true;
+    isGrounded = false;
+    debugMode = false;
 
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.sprite.width = 16;
-        this.sprite.height = 16;
+        this.sprite.width = 32;
+        this.sprite.height = 32;
     }
 
     setMove(moveX, moveY) {
@@ -26,12 +29,11 @@ class Character {
 
     checkCollision(vectorX, vectorY) {
         this.isGrounded = false;
-
         let potentialX = this.x + vectorX;
         let potentialY = this.y + vectorY;
         let tile = findTile(Math.floor(potentialX), Math.floor(potentialY));
         // skip checks
-        if (tile == 0) {
+        if (tile == null || tile == 0) {
             this.x = potentialX;
             this.y = potentialY;
             return false;
@@ -59,8 +61,8 @@ class Character {
     updateVelocity(deltaTime) {
         const maxVelocityX = 10.0;
         const maxVelocityY = 12.0;
-        const accelerationX = 8.0;
-        const initialJump = 8.0;
+        const accelerationX = 16.0;
+        const initialJump = 12.0;
         const gravity = 12.0;
 
         if (this.moveX < 0) {
@@ -92,14 +94,46 @@ class Character {
         this.checkCollision(this.velocityX * deltaTime, this.velocityY * deltaTime);
     }
 
+    toggleDebugMode() {
+        if (this.debugMode) {
+            this.debugMode = false;
+        }
+        else {
+            this.debugMode = true;
+        }
+    }
+
+    debugVelocity (deltaTime) {
+        this.x += this.moveX * 10.0 * deltaTime;
+        this.y += this.moveY * 10.0 * deltaTime;
+    }
+
+    kill() {
+        this.x = this.spawnX;
+        this.y = this.spawnY;
+    }
+
     update(deltaTime) {
-        this.updateVelocity(deltaTime);
+        if (!this.debugMode) {
+            this.updateVelocity(deltaTime);
+            // check if dead :(
+            if (this.y < 0) {
+                this.kill();
+            }
+        }
+        else
+            this.debugVelocity(deltaTime);
 
         this.moveX = 0.0;
         this.moveY = 0.0;
     }
 
     setOffset(offsetX, offsetY) {
-        this.sprite.position.set((16 * this.x) + offsetX - 8, -(16 * this.y) + offsetY + 8);
+        this.sprite.position.set((16 * this.x) + offsetX - 8 - 8, -(16 * this.y) + offsetY + 8 -16);
+    }
+
+    setRespawn(x, y) {
+        this.spawnX = x;
+        this.spawnY = y;
     }
 }
