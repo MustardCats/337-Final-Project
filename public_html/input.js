@@ -1,6 +1,10 @@
 
 let keys = {};
 let prev_keys = {};
+let mouse = {};
+let prev_mouse = {};
+let mouseX = 0;
+let mouseY = 0;
 const MAXKEYCODES = 256;
 
 for (let i = 0; i < MAXKEYCODES; i++) {
@@ -8,15 +12,25 @@ for (let i = 0; i < MAXKEYCODES; i++) {
     prev_keys[i] = false;
 }
 
+for (let i = 0; i < 10; i++) {
+    mouse[i] = false;
+    prev_mouse[i] = false;
+}
+
 function keyDown(e) {
     keys[e.keyCode] = true;
-    if (keys[e.keyCode] && !prev_keys[e.keyCode]) {
-        console.log('tap');
-    }
 }
 
 function keyUp(e) {
     keys[e.keyCode] = false;
+}
+
+function mouseDown(e) {
+    mouse[e.button] = true;
+}
+
+function mouseUp(e) {
+    mouse[e.button] = false;
 }
 
 function isKeyDown(key) {
@@ -27,7 +41,11 @@ function isKeyPress(key) {
     return keys[key.charCodeAt(0)] && !prev_keys[key.charCodeAt(0)];
 }
 
-function handleInput(player, deltaTime) {
+function isMousePress(button) {
+    return mouse[button] && !prev_mouse[button];
+}
+
+function handleInput(renderer, player, deltaTime) {
     if (isKeyDown('A')) {
         player.setMove(-1, 0);
     }
@@ -46,9 +64,21 @@ function handleInput(player, deltaTime) {
     if (isKeyPress('F')) {
         player.toggleDebugMode();
     }
+    if (isKeyPress('J')) {
+        let pos = posToChunk(player.x, player.y);
+        let chunk = findChunk(pos[0], pos[1]);
+        saveChunk(chunk);
+    }
+
+    if (isMousePress(0) && player.debugMode) {
+        editTile(mouseX, mouseY);
+    }
 
     // allows single key taps to function
     for (let i = 0; i < MAXKEYCODES; i++) {
         prev_keys[i] = keys[i];
+    }
+    for (let i = 0; i < 10; i++) {
+        prev_mouse[i] = mouse[i];
     }
 }

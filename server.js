@@ -6,6 +6,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const md5 = require('md5');
 const cookieParser = require('cookie-parser');
+const fs = require('fs');
+const bodyParser = require('body-parser')
 const connection_string = 'mongodb://127.0.0.1/GameDB'
 const port = 8080;
 const app = express();
@@ -45,7 +47,6 @@ function authenticate(username,password) {
     return h;
 }
 
-
 app.post('/add/user',async (req,res) => {
     let u = req.body.username;
     let p = req.body.password;
@@ -74,6 +75,35 @@ app.post('/add/user',async (req,res) => {
         res.end('User saved');
         //We add cookie functionality later
     }
+});
+
+app.use(bodyParser.json());
+
+app.get('/loadchunk/:x/:y', async (req, res) => {
+    let x = req.params.x;
+    let y = req.params.y;
+
+    fs.readFile('chunks/' + x + ',' + y + '.txt', 'utf8', (err, data) => {
+        if (err) {
+            res.send("{}");
+        }
+        else {
+            res.json(data);
+        }
+    });
+});
+
+app.post('/savechunk/', async (req, res) => {
+    let chunkJSON = JSON.stringify(req.body);
+    //console.log(chunkJSON);
+    let x = req.body.x;
+    let y = req.body.y;
+    fs.writeFile('chunks/' + x + ',' + y + '.txt', chunkJSON, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    });
+    res.end();
 });
 
 app.listen(port, () => {
