@@ -10,7 +10,7 @@
 const Application = PIXI.Application;
 
 const app = new Application( {
-    width: 500,
+    width: 750,
     height: 500
 });
 
@@ -19,9 +19,9 @@ document.getElementById('gameWindow').appendChild(app.view);
 let num = 0;
 let deltaTime = 0.0;
 let start = Date.now();
-let renderer = PIXI.autoDetectRenderer(720, 1280);
+let renderer = PIXI.autoDetectRenderer(app.width, app.height);
 
-let player = new Character(10, 20);
+let player = new Character(0, 0);
 
 function gameLoop() {
     // time
@@ -29,14 +29,15 @@ function gameLoop() {
     deltaTime = (end - start) / 1000.0;
     start = end;
     // input
-    handleInput(player, deltaTime);
+    handleInput(renderer, player, deltaTime);
     // update
     deleteChunks(app, player.x, player.y);
     loadChunks(app, player.x, player.y);
     player.update(deltaTime);
-    setCamPos(-(player.x * 16) + 250, (player.y * 16) + 250);
+    setCamPos(-(player.x * 16) + 375, (player.y * 16) + 250);
     setLevelCameraOffset(camX, camY);
     player.setOffset(camX, camY);
+    
     // render
     window.requestAnimationFrame(gameLoop);
 }
@@ -45,8 +46,14 @@ async function startApp() {
     //const test = await PIXI.Assets.load('sprites/test.png');
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
+    window.addEventListener("mousedown", mouseDown);
+    window.addEventListener("mouseup", mouseUp);
+    app.renderer.view.onmousemove = function mouseMove(e) {
+        mouseX = e.layerX;
+        mouseY = e.layerY;
+    }
     let delta = 0.0;
-    startLevel(app);
+    //startLevel(app);
     app.stage.addChild(player.sprite);
     gameLoop();
 }

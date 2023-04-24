@@ -11,7 +11,7 @@ class Character {
     velocityX = 0.0;
     velocityY = 0.0;
     isGrounded = false;
-    debugMode = false;
+    debugMode = true;
 
     constructor(x, y) {
         this.x = x;
@@ -60,10 +60,10 @@ class Character {
 
     updateVelocity(deltaTime) {
         const maxVelocityX = 10.0;
-        const maxVelocityY = 12.0;
-        const accelerationX = 16.0;
-        const initialJump = 12.0;
-        const gravity = 12.0;
+        const maxVelocityY = 30.0;
+        const accelerationX = 30.0;
+        const initialJump = 30.0;
+        const gravity = 100.0;
 
         if (this.moveX < 0) {
             // reset velocity
@@ -85,11 +85,19 @@ class Character {
         if (!this.isGrounded) {
             this.velocityY -= gravity * deltaTime;
             if (Math.abs(this.velocityY) > maxVelocityY) {
-                this.velocityY += gravity * deltaTime;
+                if (this.velocityY < 0)
+                    this.velocityY = -maxVelocityY;
             }
         }
         if (this.moveX == 0) {
             this.velocityX = 0;
+        }
+        // cap horizontal speed
+        if (this.velocityX > maxVelocityX) {
+            this.velocityX = maxVelocityX;
+        }
+        if (this.velocityX < -maxVelocityX) {
+            this.velocityX = -maxVelocityX;
         }
         this.checkCollision(this.velocityX * deltaTime, this.velocityY * deltaTime);
     }
@@ -111,6 +119,8 @@ class Character {
     kill() {
         this.x = this.spawnX;
         this.y = this.spawnY;
+        this.velocityX = 0.0;
+        this.velocityY = 0.0;
     }
 
     update(deltaTime) {
