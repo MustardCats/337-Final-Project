@@ -6,55 +6,45 @@ const tileSpriteMappings = new Map([
     [1, "./sprites/test.png"]
 ]);
 
-class Chunk {
+class BasicChunk {
     x = 0;
     y = 0;
     tiles = [];
-    container = new PIXI.Container();
+    modified = false;
 
     constructor(x, y) {
         this.x = x;
         this.y = y;
+        this.tiles = [];
+        this.modified = false;
+    }
+}
+
+class Chunk extends BasicChunk {
+    container = new PIXI.Container();
+    sprites = new Map();
+
+    reloadSprite(index) {
+        if (this.tiles[index] == 0) {
+            return;
+        }
+        let sprite = null;
+        if (this.tiles[index] == 1) {
+            // TODO: load sprites in a seperate space
+            sprite = PIXI.Sprite.from("./sprites/test.png");
+        }
+        if (sprite != null) {
+            sprite.position.set((index % chunkSize) * tileSize, -(Math.floor(index / chunkSize)) * tileSize);
+            sprite.width = 16;
+            sprite.height = 16;
+            this.container.addChild(sprite);
+            this.sprites[index] = sprite;
+        }
     }
 
-    loadTiles() {
-        // test chunk
-        for (let i = 0; i < chunkSize * chunkSize; i++) {
-            if (this.y == 0) {
-                if ((Math.floor(i / chunkSize)) == 1) {
-                    this.tiles[i] = 1;
-                }
-                else if (((Math.floor(i / chunkSize)) == 6) &&
-                    (i % chunkSize) > 3 && (i % chunkSize) < 6) {
-                    this.tiles[i] = 1;
-                }
-                else {
-                    this.tiles[i] = 0;
-                }
-            }
-            else if (this.y > 1) {
-                if ((Math.floor(i / chunkSize)) == 7 ||
-                    (Math.floor(i / chunkSize)) == 0 ||
-                    (i % chunkSize) == 7 || (i % chunkSize) == 0) {
-                    this.tiles[i] = 1;
-                }
-                else {
-                    this.tiles[i] = 0;
-                }
-            }
-            else {
-                this.tiles[i] = 0;
-            }
-        }
+    loadTileSprites() {
         for (let i = 0; i < this.tiles.length; i++) {
-            // TODO: load sprites in a seperate space
-            if (this.tiles[i] == 1) {
-                const sprite = PIXI.Sprite.from("./sprites/test.png");
-                sprite.position.set((i % chunkSize) * tileSize, -(Math.floor(i / chunkSize)) * tileSize);
-                sprite.width = 16;
-                sprite.height = 16;
-                this.container.addChild(sprite);
-            }
+            this.reloadSprite(i);
         }
     }
 
@@ -63,7 +53,14 @@ class Chunk {
     }
 
     setTile(x, y, id) {
+        let old = this.tiles[y * chunkSize + x];
         this.tiles[y * chunkSize + x] = id;
+        if (old > 0) {
+            this.container.removeChild(this.sprites[(y * chunkSize + x)]);
+            this.sprites.delete(y * chunkSize + x);
+        }
+        this.reloadSprite(y * chunkSize + x);
+        this.modified = true;
     }
 
     setOffset(offsetX, offsetY) {
