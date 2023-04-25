@@ -9,7 +9,7 @@
 */
 const Application = PIXI.Application;
 
-const app = new Application( {
+const app = new Application({
     width: 500,
     height: 500
 });
@@ -19,6 +19,8 @@ document.getElementById('gameWindow').appendChild(app.view);
 let num = 0;
 let deltaTime = 0.0;
 let start = Date.now();
+let score = 0.0;
+let maxTime = 600;
 let renderer = PIXI.autoDetectRenderer(720, 1280);
 
 let player = new Character(10, 20);
@@ -49,6 +51,14 @@ async function startApp() {
     startLevel(app);
     app.stage.addChild(player.sprite);
     gameLoop();
+}
+
+function score() {
+    if (score > maxTime) {
+        score = 1000;
+    } else {
+        score += (deltaTime * 100);
+    }
 }
 
 startApp();
