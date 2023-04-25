@@ -20,8 +20,7 @@ let num = 0;
 let deltaTime = 0.0;
 let start = Date.now();
 let renderer = PIXI.autoDetectRenderer(app.width, app.height);
-
-let player = new Character(0, 0);
+let player = null;
 
 function gameLoop() {
     // time
@@ -53,8 +52,10 @@ async function startApp() {
         mouseY = e.layerY;
     }
     let delta = 0.0;
-    //startLevel(app);
+
+    player = new Character(0, 0);
     app.stage.addChild(player.sprite);
+
     gameLoop();
 }
 

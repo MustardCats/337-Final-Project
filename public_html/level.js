@@ -95,7 +95,7 @@ function deleteChunks(app, playerX, playerY) {
             if (Math.abs(chunks[i].x - chunkPos[0]) > (levelRadius + 1) ||
                 Math.abs(chunks[i].y - chunkPos[1]) > (levelRadius + 1))
             {
-                console.log('deleting chunk ' + chunks[i].x + ' ' + chunks[i].y);
+                //console.log('deleting chunk ' + chunks[i].x + ' ' + chunks[i].y);
                 app.stage.removeChild(chunks[i].container);
                 if (chunks[i].modified) {
                     saveChunk(chunks[i]).then(() => {
