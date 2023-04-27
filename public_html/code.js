@@ -18,12 +18,15 @@
     <script src="./app.js"></script>
  */
 function loadGame () {
-    var scripts = ['./camera.js',
+    var scripts = [
+        './sprites.js',
+        './camera.js',
         './input.js',
         './level.js',
         './chunk.js',
         './character.js',
-        './app.js']
+        './app.js'
+    ];
     scripts.forEach(script => {
         console.log(script);
         var scriptToAdd = document.createElement('script');

@@ -29,14 +29,11 @@ class Chunk extends BasicChunk {
             return;
         }
         let sprite = null;
-        if (this.tiles[index] == 1) {
-            // TODO: load sprites in a seperate space
-            sprite = PIXI.Sprite.from("./sprites/test.png");
-        }
+        sprite = new PIXI.Sprite(spritesheet.textures[tileMappings[this.tiles[index]]]);
         if (sprite != null) {
             sprite.position.set((index % chunkSize) * tileSize, -(Math.floor(index / chunkSize)) * tileSize);
-            sprite.width = 16;
-            sprite.height = 16;
+            sprite.width = tileSize;
+            sprite.height = tileSize;
             this.container.addChild(sprite);
             this.sprites[index] = sprite;
         }

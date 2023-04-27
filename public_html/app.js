@@ -22,8 +22,7 @@ let start = Date.now();
 let score = 0.0;
 let maxTime = 600;
 let renderer = PIXI.autoDetectRenderer(app.width, app.height);
-
-let player = new Character(0, 0);
+let player = null;
 
 function gameLoop() {
     // time
@@ -55,8 +54,10 @@ async function startApp() {
         mouseY = e.layerY;
     }
     let delta = 0.0;
-    //startLevel(app);
+
+    player = new Character(0, 0);
     app.stage.addChild(player.sprite);
+
     gameLoop();
 }
 
