@@ -14,16 +14,22 @@ class Respawn {
         this.y = y;
         this.respawnX = respawnX;
         this.respawnY = respawnY;
-        this.sprite = new PIXI.Sprite(spritesheet.textures['kirbyleft']);
+        this.sprite = new PIXI.Sprite(spritesheet.textures['door.png']);
+        this.sprite.width = 32.0;
+        this.sprite.height = 32.0;
     }
 
     checkIntersect(player) {
-        if ((player.x > this.x - (this.width / 2.0) || player.x < this.x + (this.width / 2.0)) &&
-            (player.y > this.y - (this.height / 2.0) || player.y < this.y + (this.height / 2.0)))
+        if ((player.x > this.x - (this.width / 2.0) && player.x < this.x + (this.width / 2.0)) &&
+            (player.y > this.y - (this.height / 2.0) && player.y < this.y + (this.height / 2.0)))
         {
-            player.setRespawn(respawnX, respawnY);
+            player.setRespawn(this.respawnX, this.respawnY);
             player.x = this.respawnX;
             player.y = this.respawnY;
         }
+    }
+
+    setOffset(offsetX, offsetY) {
+        this.sprite.position.set((16 * this.x) + offsetX - 8 - 8, -(16 * this.y) + offsetY + 8 - tileSize);
     }
 }

@@ -54,11 +54,14 @@ async function startApp() {
 
     player = new Character(0, 0);
     app.stage.addChild(player.sprite);
+    for (let i = 0; i < respawns.length; i++) {
+        app.stage.addChild(respawns[i].sprite);
+    }
 
     gameLoop();
 }
 
-function score() {
+function calcScore() {
     if (score > maxTime) {
         score = 1000;
     } else {

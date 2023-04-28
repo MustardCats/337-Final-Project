@@ -16,7 +16,7 @@ class Character {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.sprite = new PIXI.Sprite(spritesheet.textures['kirbyleft']);
+        this.sprite = new PIXI.Sprite(spritesheet.textures['buff kirby left.png']);
         this.sprite.width = 32;
         this.sprite.height = 32;
     }
@@ -134,6 +134,10 @@ class Character {
         }
         else
             this.debugVelocity(deltaTime);
+
+        for (let i = 0; i < respawns.length; i++) {
+            respawns[i].checkIntersect(this);
+        }
 
         this.moveX = 0.0;
         this.moveY = 0.0;

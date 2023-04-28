@@ -20,6 +20,7 @@
 function loadGame () {
     var scripts = [
         './sprites.js',
+        './respawn.js',
         './camera.js',
         './input.js',
         './level.js',
