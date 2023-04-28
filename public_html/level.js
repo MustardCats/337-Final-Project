@@ -5,7 +5,14 @@ const levelRadius = 2;
 let chunks = [];
 let chunksToLoad = [];
 let oldChunkPos = [-1, -1];
-let debugEditorID = 1;
+let debugEditorID = 0;
+// respawns hardcoded
+let respawns = [];
+for (let i = 0; i < 5; i++) {
+    respawns.push(new Respawn(i * 200, 5));
+    app.stage.addChild(respawns[i])
+}
+respawns[respawns.length - 1].isFinish = true;
 
 function createChunk(app, x, y) {
     let new_chunk = new Chunk(x, y);

@@ -69,11 +69,48 @@ function handleInput(renderer, player, deltaTime) {
         let chunk = findChunk(pos[0], pos[1]);
         saveChunk(chunk);
     }
-
-    if (isMousePress(0) && player.debugMode) {
-        editTile(mouseX, mouseY);
+    // debug stuff
+    if (player.debugMode) {
+        if (isKeyPress('G')) {
+            for (let i = 0; i < chunks.length; i++) {
+                saveChunk(chunks[i]);
+                chunks[i].modified = false;
+            }
+        }
+        if (isMousePress(0)) {
+            editTile(mouseX, mouseY);
+        }
+        if (isKeyPress('0')) {
+            debugEditorID = 0;
+        }
+        if (isKeyPress('1')) {
+            debugEditorID = 1;
+        }
+        if (isKeyPress('2')) {
+            debugEditorID = 2;
+        }
+        if (isKeyPress('3')) {
+            debugEditorID = 3;
+        }
+        if (isKeyPress('4')) {
+            debugEditorID = 4;
+        }
+        if (isKeyPress('5')) {
+            debugEditorID = 5;
+        }
+        if (isKeyPress('6')) {
+            debugEditorID = 6;
+        }
+        if (isKeyPress('7')) {
+            debugEditorID = 7;
+        }
+        if (isKeyPress('8')) {
+            debugEditorID = 8;
+        }
+        if (isKeyPress('9')) {
+            debugEditorID = 9;
+        }
     }
-
     // allows single key taps to function
     for (let i = 0; i < MAXKEYCODES; i++) {
         prev_keys[i] = keys[i];

@@ -4,9 +4,6 @@
     html file. 
     the app.js is linked up at the game.html, so use the game.html to check various application graphics. 
 */
-/** 
- *  Below code is for testing purposes, feel free to remove. 
-*/
 const Application = PIXI.Application;
 
 const app = new Application( {
@@ -70,6 +67,3 @@ function score() {
 }
 
 startApp();
-/** 
- * End of testing code
-*/
