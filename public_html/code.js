@@ -22,10 +22,11 @@ function loadGame () {
         './sprites.js',
         './camera.js',
         './input.js',
-        './level.js',
+        './respawn.js',
         './chunk.js',
         './character.js',
-        './app.js'
+        './app.js',
+        './level.js'
     ];
     scripts.forEach(script => {
         console.log(script);
