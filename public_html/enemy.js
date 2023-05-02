@@ -1,5 +1,6 @@
 
-class Character {
+class Enemy {
+    // initial coordinates
     x = 0.0;
     y = 0.0;
     sprite = null;
@@ -12,23 +13,31 @@ class Character {
     velocityY = 0.0;
     isGrounded = false;
     debugMode = true;
+    isleft = false; 
+    isright = true;
 
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.sprite = new PIXI.Sprite(spritesheet.textures['kirbyleft']);
+        this.sprite = new PIXI.Sprite(spritesheet.textures['enemy1left']);
         this.sprite.width = 32;
         this.sprite.height = 32;
     }
 
-    setMove(moveX, moveY) {
-        if (Math.abs(moveX) == 1)
-            this.moveX = moveX;
-        if (Math.abs(moveY) == 1)
-            this.moveY = moveY;
+    // FIX ME
+    setMove(moveX) {
+        if (isright){ 
+            if (Math.abs(moveX) == 1){
+                this.moveX = moveX;
+            }
+        }
+        
+    
+        //if (Math.abs(moveY) == 1)
+            //this.moveY = moveY;
     }
 
-    checkCollision(vectorX, vectorY) {
+    /*checkCollision(vectorX, vectorY) {
         this.isGrounded = false;
         let potentialX = this.x + vectorX;
         let potentialY = this.y + vectorY;
@@ -57,14 +66,14 @@ class Character {
         }
 
         return true;
-    }
+    }*/
 
     updateVelocity(deltaTime) {
         const maxVelocityX = 10.0;
-        const maxVelocityY = 30.0;
+        const maxVelocityY = 20.0;
         const accelerationX = 30.0;
         const initialJump = 30.0;
-        const gravity = 100.0;
+        //const gravity = 100.0;
 
         if (this.moveX < 0) {
             // reset velocity
@@ -139,17 +148,7 @@ class Character {
         this.moveY = 0.0;
     }
 
-    // rendering
     setOffset(offsetX, offsetY) {
         this.sprite.position.set((16 * this.x) + offsetX - 8 - 8, -(16 * this.y) + offsetY + 8 -tileSize);
-    }
-
-    setRespawn(x, y) {
-        this.spawnX = x;
-        this.spawnY = y;
-    }
-
-    havePowerUp(x,y){
-
     }
 }
