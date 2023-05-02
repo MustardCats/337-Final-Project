@@ -5,13 +5,20 @@ const levelRadius = 2;
 let chunks = [];
 let chunksToLoad = [];
 let oldChunkPos = [-1, -1];
-let debugEditorID = 1;
+let debugEditorID = 0;
+// respawns hardcoded
+let respawns = [];
+for (let i = 1; i < 6; i++) {
+    respawns.push(new Respawn(i * 100 + 5, 5, i * 100 + 5 + 10, 5));
+}
+
+respawns[respawns.length - 1].isFinish = true;
 
 function createChunk(app, x, y) {
     let new_chunk = new Chunk(x, y);
     chunks.push(new_chunk);
     for (let i = 0; i < chunkSize * chunkSize; i++) {
-        chunks[chunks.length - 1].tiles.push(0)
+        chunks[chunks.length - 1].tiles.push(0);
     }
     app.stage.addChild(chunks[chunks.length - 1].container);
 }
@@ -122,6 +129,9 @@ function posToChunk(x, y) {
 function setLevelCameraOffset(camX, camY) {
     for (let i = 0; i < chunks.length; i++) {
         chunks[i].setOffset(camX, camY);
+    }
+    for (let i = 0; i < respawns.length; i++) {
+        respawns[i].setOffset(camX, camY);
     }
 }
 

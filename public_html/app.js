@@ -4,9 +4,6 @@
     html file. 
     the app.js is linked up at the game.html, so use the game.html to check various application graphics. 
 */
-/** 
- *  Below code is for testing purposes, feel free to remove. 
-*/
 const Application = PIXI.Application;
 
 const app = new Application( {
@@ -23,6 +20,7 @@ let score = 0.0;
 let maxTime = 600;
 let renderer = PIXI.autoDetectRenderer(app.width, app.height);
 let player = null;
+let enemy1 = null;
 
 function gameLoop() {
     // time
@@ -56,12 +54,16 @@ async function startApp() {
     let delta = 0.0;
 
     player = new Character(0, 0);
+    enemy1 = new Enemy(5,0);
     app.stage.addChild(player.sprite);
+    for (let i = 0; i < respawns.length; i++) {
+        app.stage.addChild(respawns[i].sprite);
+    }
 
     gameLoop();
 }
 
-function score() {
+function calcScore() {
     if (score > maxTime) {
         score = 1000;
     } else {
@@ -70,6 +72,3 @@ function score() {
 }
 
 startApp();
-/** 
- * End of testing code
-*/

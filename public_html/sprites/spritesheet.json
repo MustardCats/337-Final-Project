@@ -1,8 +1,4 @@
-
-// used this site to help me figure out spritesheets :)
-// https://pixijs.io/guides/basics/sprite-sheets.html
-
-const atlasData = {
+{
 	"frames": {
 		"Enemy 1 Left.png": {
 			"frame": {
@@ -308,7 +304,7 @@ const atlasData = {
 	"meta": {
 		"app": "http://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"image": "./sprites/spritesheet.png",
+		"image": "spritesheet.png",
 		"format": "RGBA8888",
 		"size": {
 			"w": 464,
@@ -317,20 +313,3 @@ const atlasData = {
 		"scale": "1"
 	}
 }
-
-const spritesheet = new PIXI.Spritesheet(
-    PIXI.BaseTexture.from(atlasData.meta.image),
-    atlasData
-);
-
-let spritesReady = false;
-
-const tileMappings = {};
-tileMappings[1] = 'grass.png';
-tileMappings[2] = 'dirt';
-
-spritesheet.parse().then(() => {
-    spritesReady = true;
-    console.log('loaded sprites');
-});
-
