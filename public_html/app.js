@@ -11,7 +11,7 @@ const app = new Application( {
     height: 500
 });
 
-document.getElementById('gameWindow').appendChild(app.view);
+
 
 
 let num = 0;
@@ -41,8 +41,14 @@ function gameLoop() {
     // render
     window.requestAnimationFrame(gameLoop);
 }
-
+/**
+ * Function to start the PIXI.js application, handles
+ * adding it to the DOM as well as starts up and applies other
+ * js and event listeners.
+ */
 async function startApp() {
+    //Add game to gameWindow on document
+    document.getElementById('gameWindow').appendChild(app.view);
     //const test = await PIXI.Assets.load('sprites/test.png');
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
@@ -71,5 +77,3 @@ function calcScore() {
         score += (deltaTime * 100);
     }
 }
-
-startApp();
