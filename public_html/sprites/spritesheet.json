@@ -224,25 +224,25 @@
 			"frame": {
 				"x": 336,
 				"y": 0,
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			},
 			"sourceSize": {
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			}
 		},
 		"powerup1.png": {
 			"frame": {
-				"x": 368,
+				"x": 352,
 				"y": 0,
 				"w": 32,
 				"h": 32
@@ -262,7 +262,7 @@
 		},
 		"powerup2.png": {
 			"frame": {
-				"x": 400,
+				"x": 384,
 				"y": 0,
 				"w": 32,
 				"h": 32
@@ -278,6 +278,26 @@
 			"sourceSize": {
 				"w": 32,
 				"h": 32
+			}
+		},
+		"sand.png": {
+			"frame": {
+				"x": 416,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"sourceSize": {
+				"w": 16,
+				"h": 16
 			}
 		},
 		"shake3.png": {

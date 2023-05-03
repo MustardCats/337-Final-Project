@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const bodyParser = require('body-parser')
 const connection_string = 'mongodb://127.0.0.1/GameDB'
-const port = 8080;
+const port = 3000;
 const app = express();
 
 app.use(express.static('public_html'));
