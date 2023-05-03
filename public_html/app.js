@@ -33,7 +33,7 @@ function gameLoop() {
     deleteChunks(app, player.x, player.y);
     loadChunks(app, player.x, player.y);
     player.update(deltaTime);
-    setCamPos(-(player.x * 16) + 375, (player.y * 16) + 250);
+    setCamPos(-(player.x * 32) + 375, (player.y * 32) + 250);
     setLevelCameraOffset(camX, camY);
     player.setOffset(camX, camY);
     
@@ -54,7 +54,7 @@ async function startApp() {
     let delta = 0.0;
 
     player = new Character(0, 0);
-    enemy1 = new Enemy(5,0);
+    //enemy1 = new Enemy(5,0);
     app.stage.addChild(player.sprite);
     for (let i = 0; i < respawns.length; i++) {
         app.stage.addChild(respawns[i].sprite);

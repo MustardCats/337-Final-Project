@@ -228,25 +228,25 @@ const atlasData = {
 			"frame": {
 				"x": 336,
 				"y": 0,
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			},
 			"sourceSize": {
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			}
 		},
 		"powerup1.png": {
 			"frame": {
-				"x": 368,
+				"x": 352,
 				"y": 0,
 				"w": 32,
 				"h": 32
@@ -266,7 +266,7 @@ const atlasData = {
 		},
 		"powerup2.png": {
 			"frame": {
-				"x": 400,
+				"x": 384,
 				"y": 0,
 				"w": 32,
 				"h": 32
@@ -282,6 +282,26 @@ const atlasData = {
 			"sourceSize": {
 				"w": 32,
 				"h": 32
+			}
+		},
+		"sand.png": {
+			"frame": {
+				"x": 416,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"sourceSize": {
+				"w": 16,
+				"h": 16
 			}
 		},
 		"shake3.png": {
@@ -308,7 +328,7 @@ const atlasData = {
 	"meta": {
 		"app": "http://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"image": "./sprites/spritesheet.png",
+		"image": "sprites/spritesheet.png",
 		"format": "RGBA8888",
 		"size": {
 			"w": 464,
@@ -327,7 +347,7 @@ let spritesReady = false;
 
 const tileMappings = {};
 tileMappings[1] = 'grass.png';
-tileMappings[2] = 'dirt';
+tileMappings[2] = 'sand.png';
 
 spritesheet.parse().then(() => {
     spritesReady = true;

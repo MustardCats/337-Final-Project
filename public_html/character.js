@@ -17,8 +17,8 @@ class Character {
         this.x = x;
         this.y = y;
         this.sprite = new PIXI.Sprite(spritesheet.textures['buff kirby left.png']);
-        this.sprite.width = 32;
-        this.sprite.height = 32;
+        this.sprite.width = 64;
+        this.sprite.height = 64;
     }
 
     setMove(moveX, moveY) {
@@ -145,7 +145,7 @@ class Character {
 
     // rendering
     setOffset(offsetX, offsetY) {
-        this.sprite.position.set((16 * this.x) + offsetX - 8 - 8, -(16 * this.y) + offsetY + 8 -tileSize);
+        this.sprite.position.set((32 * this.x) + offsetX - 16 - 16, -(32 * this.y) + offsetY + 16 -tileSize);
     }
 
     setRespawn(x, y) {

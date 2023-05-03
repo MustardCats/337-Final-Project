@@ -1,5 +1,5 @@
 const chunkSize = 8; // number of tiles in each dimension
-const tileSize = 16; // number of pixels for each tile
+const tileSize = 32; // number of pixels for each tile
 const chunkPixelSize = chunkSize * tileSize; // number of pixels for each chunk
 
 const tileSpriteMappings = new Map([
@@ -32,8 +32,8 @@ class Chunk extends BasicChunk {
         sprite = new PIXI.Sprite(spritesheet.textures[tileMappings[this.tiles[index]]]);
         if (sprite != null) {
             sprite.position.set((index % chunkSize) * tileSize, -(Math.floor(index / chunkSize)) * tileSize);
-            sprite.width = tileSize;
-            sprite.height = tileSize;
+            sprite.width = tileSize + 1;
+            sprite.height = tileSize + 1;
             this.container.addChild(sprite);
             this.sprites[index] = sprite;
         }
