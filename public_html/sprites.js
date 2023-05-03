@@ -204,7 +204,7 @@ const atlasData = {
 				"h": 32
 			}
 		},
-		"door.png": {
+		"cloud_center.png": {
 			"frame": {
 				"x": 320,
 				"y": 0,
@@ -224,7 +224,7 @@ const atlasData = {
 				"h": 16
 			}
 		},
-		"grass.png": {
+		"cloud_left.png": {
 			"frame": {
 				"x": 336,
 				"y": 0,
@@ -244,47 +244,87 @@ const atlasData = {
 				"h": 16
 			}
 		},
-		"powerup1.png": {
+		"cloud_right.png": {
 			"frame": {
 				"x": 352,
 				"y": 0,
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			},
 			"sourceSize": {
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			}
 		},
-		"powerup2.png": {
+		"door.png": {
+			"frame": {
+				"x": 368,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"sourceSize": {
+				"w": 16,
+				"h": 16
+			}
+		},
+		"grass.png": {
 			"frame": {
 				"x": 384,
 				"y": 0,
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			},
 			"sourceSize": {
-				"w": 32,
-				"h": 32
+				"w": 16,
+				"h": 16
 			}
 		},
-		"sand.png": {
+		"logs.png": {
+			"frame": {
+				"x": 400,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"sourceSize": {
+				"w": 16,
+				"h": 16
+			}
+		},
+		"moon.png": {
 			"frame": {
 				"x": 416,
 				"y": 0,
@@ -304,7 +344,7 @@ const atlasData = {
 				"h": 16
 			}
 		},
-		"shake3.png": {
+		"powerup1.png": {
 			"frame": {
 				"x": 432,
 				"y": 0,
@@ -323,15 +363,115 @@ const atlasData = {
 				"w": 32,
 				"h": 32
 			}
+		},
+		"powerup2.png": {
+			"frame": {
+				"x": 464,
+				"y": 0,
+				"w": 32,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 32,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 32,
+				"h": 32
+			}
+		},
+		"sand.png": {
+			"frame": {
+				"x": 496,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"sourceSize": {
+				"w": 16,
+				"h": 16
+			}
+		},
+		"shake3.png": {
+			"frame": {
+				"x": 512,
+				"y": 0,
+				"w": 32,
+				"h": 32
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 32,
+				"h": 32
+			},
+			"sourceSize": {
+				"w": 32,
+				"h": 32
+			}
+		},
+		"temple_horizontal.png": {
+			"frame": {
+				"x": 544,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"sourceSize": {
+				"w": 16,
+				"h": 16
+			}
+		},
+		"temple_vertical.png": {
+			"frame": {
+				"x": 560,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 16,
+				"h": 16
+			},
+			"sourceSize": {
+				"w": 16,
+				"h": 16
+			}
 		}
 	},
 	"meta": {
 		"app": "http://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"image": "sprites/spritesheet.png",
+		"image": "spritesheet.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 464,
+			"w": 576,
 			"h": 32
 		},
 		"scale": "1"
@@ -348,6 +488,13 @@ let spritesReady = false;
 const tileMappings = {};
 tileMappings[1] = 'grass.png';
 tileMappings[2] = 'sand.png';
+tileMappings[3] = 'logs.png';
+tileMappings[4] = 'cloud_left.png';
+tileMappings[5] = 'cloud_right.png';
+tileMappings[6] = 'cloud_center.png';
+tileMappings[7] = 'moon.png';
+tileMappings[8] = 'temple_horizontal.png';
+tileMappings[9] = 'temple_vertical.png';
 
 spritesheet.parse().then(() => {
     spritesReady = true;
