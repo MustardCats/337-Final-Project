@@ -48,12 +48,22 @@
 //     console.log(document.readyState);
 // }
 
+function noSpace() {
+    window.addEventListener('keydown', function(e) {
+        if(e.code === "Space" && e.target === document.body) {
+          e.preventDefault();
+        }
+      });
+}
+//Add on win, remove event listener
+
 function addUser() {
     let url = '/add/user';
     let u = document.getElementById('addUserField')
     let ps = document.getElementById('addUserPassword');
     if(u.value == '' || ps.value == '') {
         console.log('Fields cannot be empty');
+        alert("Fields cannot be empty!");
         return;
     }
     let p = fetch(url, {
@@ -83,10 +93,18 @@ function addUser() {
 
 function login() {
     let url = '/login/'
+    let u = document.getElementById('loginUserField');
+    let ps = document.getElementById('loginUserPassword');
+
+    if(u.value == '' || ps.value == '') {
+        alert("Fields cannot be empty!");
+    }
 }
 
 function showLoginPopup() {
-    document.getElementById('loginPopup').style.display = "block";
+    var pop = document.getElementById('loginPopup');
+    pop.style.display = "block";
+    pop.addEventListener('keydown', enterBut());
 }
 
 function showAddUserPopup() {
@@ -98,9 +116,18 @@ function showAddUserPopup() {
 function exitPopup() {
     Array.from(document.querySelectorAll('.container-popup')).forEach(function(popup) {
         popup.style.display = "none";
+        popup.removeEventListener('keydown',enterBut());
     });
 }
 
+function enterBut(login) {
+    if(e.code === "Enter" && e.target === document.body && login === false) {
+        addUser();
+    }else if (e.code === "Enter" && e.target === document.body && login === true){
+        login();
+    }
+}
+
 setInterval( () => {
-    //window.location.reload();
-},5000);
+    window.location.reload();
+},2000);

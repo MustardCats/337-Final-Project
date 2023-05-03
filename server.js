@@ -12,9 +12,19 @@ const connection_string = 'mongodb://127.0.0.1/GameDB'
 const port = 3000;
 const app = express();
 
-app.use(express.static('public_html'));
+const cookieValid = function(req,res,next) {
+    if(req.cookies) {
+        req.cookieExists = true;
+    }else {
+        req.cookieExists = false;
+    }
+    next()
+}
 
+app.use(express.static('public_html'));
+app.use(cookieParser());
 app.use(express.json());
+app.use(cookieValid);
 
 mongoose.connect(connection_string, {useNewUrlParser: true});
 mongoose.connection.on('error',() => {
@@ -47,6 +57,32 @@ function authenticate(username,password) {
     return h;
 }
 
+app.get('/login/:user/:pass', async (req,res) => {
+    let u = req.params.user;
+    let p = req.params.pass;
+    let h = authenticate(u,p);
+
+    let e = await User.exists({hashedPsw:h});
+    if(e) {
+        console.log('user exists');
+        let l = User.findOne({password:h}).exec();
+        l.then((results) => {
+            console.log('results in login:',results);
+            let sessId = results._id.toString();
+            console.log(sessId);
+            res.cookie("whoami",sessId,{maxAge: 1800000})
+            res.end('login success');
+        }).catch((err) =>{
+            console.log(err);
+            res.end('login fail');
+        });
+    }else {
+        console.log('That user does not exist');
+        res.end('failed to login');
+    }
+
+});
+
 app.post('/add/user',async (req,res) => {
     let u = req.body.username;
     let p = req.body.password;
@@ -54,7 +90,7 @@ app.post('/add/user',async (req,res) => {
 
     let e = await User.exists({hashedPsw: hash});
     if(e) {
-        res.end('Cannot make that user');
+        res.end('Cannot make that user, must change username or password');
     }else {
         //I do the check for username and etc client side.
         var user = new User( {
@@ -66,6 +102,8 @@ app.post('/add/user',async (req,res) => {
 
         let prom = user.save();//We wait for the user to be saved into the DB
         prom.then((doc)=>{
+            //We don't send cookies on user creation
+            //They have to login again
             console.log('user saved');
             
         }).catch((err) => {

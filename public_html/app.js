@@ -78,6 +78,10 @@ async function startApp() {
 
     gameLoop();
 }
+
+/**
+ * Where you can change the background image of the canvas
+ */
 function addBackground() {
       var image = PIXI.Sprite.from('pageImages/bluesea.png');
       app.stage.addChild(image);
