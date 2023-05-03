@@ -5,8 +5,9 @@
 
 body {
     margin: 0;
-    background: grey;
     height: 100vh;
+    background-image: url("./pageImages/bluesea.png");
+    background-color: #abcbff;
 }
 
 #middleColumn {
@@ -17,7 +18,7 @@ body {
     left:20%;
     top: 0;
     bottom: 0;
-    background-color: aquamarine;
+    background-color: #abcbff;
 }
 
 #gameWindowPlaceHolder {

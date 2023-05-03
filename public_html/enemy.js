@@ -268,3 +268,4 @@ class Level2Enemy extends BasicEnemy {
         counter +=1;
     }
 }*/
+

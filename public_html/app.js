@@ -11,9 +11,6 @@ const app = new Application( {
     height: 500
 });
 
-
-
-
 let num = 0;
 let deltaTime = 0.0;
 let start = Date.now();

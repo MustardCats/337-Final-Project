@@ -11,7 +11,7 @@ class Character {
     velocityX = 0.0;
     velocityY = 0.0;
     isGrounded = false;
-    debugMode = true;
+    debugMode = false;
 
     constructor(x, y) {
         this.x = x;
@@ -67,6 +67,9 @@ class Character {
         const gravity = 50.0;
         const initalMovement = 5.0;
 
+        if (this.isGrounded) {
+            this.velocityY = 0;
+        }
         if (this.moveX < 0) {
             // reset velocity
             if (this.velocityX >= 0)
@@ -91,6 +94,7 @@ class Character {
                     this.velocityY = -maxVelocityY;
             }
         }
+        
         if (this.moveX == 0) {
             this.velocityX = 0;
         }
@@ -135,7 +139,6 @@ class Character {
         }
         else
             this.debugVelocity(deltaTime);
-
         for (let i = 0; i < respawns.length; i++) {
             respawns[i].checkIntersect(this);
         }

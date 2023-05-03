@@ -1,4 +1,4 @@
-/*
+﻿/*
     Code that is currently linked to index.html
 */
 
@@ -17,7 +17,7 @@
     <script src="./character.js"></script>
     <script src="./app.js"></script>
  */
-function loadGame () {
+function loadGame() {
     console.log(document.readyState);
     var scripts = [
         './sprites.js',
@@ -33,13 +33,13 @@ function loadGame () {
     scripts.forEach(script => {
         console.log(script);
         var scriptToAdd = document.createElement('script');
-        scriptToAdd.setAttribute('src',script);
-        scriptToAdd.setAttribute('async',false);  
+        scriptToAdd.setAttribute('src', script);
+        scriptToAdd.setAttribute('async', false);
         document.body.appendChild(scriptToAdd);
         scriptToAdd.addEventListener("load", () => {
             console.log(`${script} loaded`)
         });
-        
+
         scriptToAdd.addEventListener("error", (ev) => {
             console.log("Error on loading file", ev);
         });
@@ -52,7 +52,7 @@ function addUser() {
     let url = '/add/user';
     let u = document.getElementById('addUserField')
     let ps = document.getElementById('addUserPassword');
-    if(u.value == '' || ps.value == '') {
+    if (u.value == '' || ps.value == '') {
         console.log('Fields cannot be empty');
         return;
     }
@@ -96,7 +96,7 @@ function showAddUserPopup() {
  * This function just exits out of all popups so we don't need to specify specific ones. 
  */
 function exitPopup() {
-    Array.from(document.querySelectorAll('.container-popup')).forEach(function(popup) {
+    Array.from(document.querySelectorAll('.container-popup')).forEach(function (popup) {
         popup.style.display = "none";
     });
 }

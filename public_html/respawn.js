@@ -25,6 +25,9 @@ class Respawn {
             player.setRespawn(this.respawnX, this.respawnY);
             player.x = this.respawnX;
             player.y = this.respawnY;
+            if (isFinish()) {
+                // post
+            }
         }
     }
 
