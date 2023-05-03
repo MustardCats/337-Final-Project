@@ -1,4 +1,7 @@
-
+/* 
+This class is the object representation of the Enemy sprite. This class handles the basic 
+functionality of movement and if it is killed. 
+*/
 class BasicEnemy {
     // initial coordinates
     x = 0.0;
@@ -154,13 +157,16 @@ class BasicEnemy {
     }
 }
 
-class Level1Enemy extends BasicEnemy{
+class Level1Enemy extends BasicEnemy {
 
-    constructor(x,y){
-        super(x,y);
+    constructor(x, y) {
+        super(x, y);
         this.sprite = new PIXI.Sprite(spritesheet.textures['Enemy 1 Left.png']);
     }
 
+    /*moves the level one enemy in a set path from left to right. 
+    The level 1 enemy moves 5 pixels in either direction.
+    */
     movement(deltaTime) {
         if (counter % 10 == 0) {
             counter = 0;
@@ -170,14 +176,17 @@ class Level1Enemy extends BasicEnemy{
         } else {
             x -= 1;
         }
-        counter +=1;
+        counter += 1;
     }
 }
 
-/*class Level2Enemy extends BasicEnemy{
+class Level2Enemy extends BasicEnemy {
+    //velocityX = 0.0;
+    velocityY = 0.0
+    isGrounded = false;
 
-    constructor(x,y){
-        super(x,y);
+    constructor(x, y) {
+        super(x, y);
         this.sprite = new PIXI.Sprite(spritesheet.textures['Enemy 2 Left.png']);
     }
 
@@ -190,11 +199,56 @@ class Level1Enemy extends BasicEnemy{
         } else {
             x -= 1;
         }
-        counter +=1;
+        counter += 1;
+    }
+
+    updateVelocity(deltaTime) {
+        //const maxVelocityX = 10.0;
+        const maxVelocityY = 10.0;
+        //const accelerationX = 30.0;
+        const initialJump = 30.0;
+        //const gravity = 100.0;
+
+        /*if (this.moveX < 0) {
+            // reset velocity
+            if (this.velocityX > 0)
+                this.velocityX = 0;
+            this.velocityX -= accelerationX * deltaTime;
+        }
+        if (this.moveX > 0) {
+            // reset velocity
+            if (this.velocityX < 0)
+                this.velocityX = 0;
+            this.velocityX += accelerationX * deltaTime;
+        }*/
+        if (this.moveY > 0) {
+            if (this.isGrounded) {
+                this.velocityY = initialJump;
+            }
+        }
+        if (!this.isGrounded) {
+            this.velocityY -= gravity * deltaTime;
+            if (Math.abs(this.velocityY) > maxVelocityY) {
+                if (this.velocityY < 0)
+                    this.velocityY = -maxVelocityY;
+            }
+        }
+        /*if (this.moveX == 0) {
+            this.velocityX = 0;
+        }
+        // cap horizontal speed
+        if (this.velocityX > maxVelocityX) {
+            this.velocityX = maxVelocityX;
+        }
+        if (this.velocityX < -maxVelocityX) {
+            this.velocityX = -maxVelocityX;
+        }
+        this.checkCollision(this.velocityX * deltaTime, this.velocityY * deltaTime);
+    }*/
     }
 }
 
-class Level3Enemy extends BasicEnemy{
+/*class Level3Enemy extends BasicEnemy{
 
     constructor(x,y){
         super(x,y);
