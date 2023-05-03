@@ -2,6 +2,8 @@
     Code that is currently linked to index.html
 */
 
+const e = require("express");
+
 
 
 
@@ -102,9 +104,9 @@ function login() {
 }
 
 function showLoginPopup() {
-    var pop = document.getElementById('loginPopup');
-    pop.style.display = "block";
-    pop.addEventListener('keydown', enterBut());
+    document.getElementById('loginPopup').style.display = "block";
+    let pswPop = document.getElementById('loginUserPassword');
+    pswPop.addEventListener('keydown', enterBut(true));
 }
 
 function showAddUserPopup() {
@@ -116,18 +118,18 @@ function showAddUserPopup() {
 function exitPopup() {
     Array.from(document.querySelectorAll('.container-popup')).forEach(function(popup) {
         popup.style.display = "none";
-        popup.removeEventListener('keydown',enterBut());
     });
 }
 
-function enterBut(login) {
-    if(e.code === "Enter" && e.target === document.body && login === false) {
+function enterBut(e,login) {
+    if(e.code === "Enter" && login === false) {
         addUser();
-    }else if (e.code === "Enter" && e.target === document.body && login === true){
-        login();
+    }else if (e.code === "Enter" && login === true){
+        e.preventDefault();
+        document.getElementById('loginButton').click();
     }
 }
 
 setInterval( () => {
-    window.location.reload();
+    //window.location.reload();
 },2000);
