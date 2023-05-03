@@ -12,7 +12,7 @@ class Enemy {
     velocityX = 0.0;
     velocityY = 0.0;
     isGrounded = false;
-    debugMode = true;
+    debugMode = false;
     isleft = false; 
     isright = true;
 
@@ -151,4 +151,8 @@ class Enemy {
     setOffset(offsetX, offsetY) {
         this.sprite.position.set((16 * this.x) + offsetX - 8 - 8, -(16 * this.y) + offsetY + 8 -tileSize);
     }
+}
+
+class Patrick {
+    x = 5;
 }
