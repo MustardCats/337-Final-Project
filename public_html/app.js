@@ -11,7 +11,7 @@ const app = new Application( {
     height: 500
 });
 
-document.getElementById('gameWindow').appendChild(app.view);
+
 
 
 let num = 0;
@@ -32,7 +32,7 @@ function gameLoop() {
     handleInput(renderer, player, deltaTime);
     // update
     deleteChunks(app, player.x, player.y);
-    loadChunks(app, player.x, player.y);
+    loadChunks(app, camX, camY, player.x, player.y);
     player.update(deltaTime);
     setCamPos(-(player.x * 32) + 375, (player.y * 32) + 250);
     setLevelCameraOffset(camX, camY);
@@ -41,8 +41,15 @@ function gameLoop() {
     // render
     window.requestAnimationFrame(gameLoop);
 }
-
+/**
+ * Function to start the PIXI.js application, handles
+ * adding it to the DOM as well as starts up and applies other
+ * js and event listeners.
+ */
 async function startApp() {
+    document.getElementById('playGameButton').style.display = "none";
+    //Add game to gameWindow on document
+    document.getElementById('gameWindow').appendChild(app.view);
     //const test = await PIXI.Assets.load('sprites/test.png');
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
@@ -54,7 +61,7 @@ async function startApp() {
     }
     let delta = 0.0;
 
-    player = new Character(0, 0);
+    player = new Character(5, 3);
     //enemy1 = new Level1Enemy(40, 14.2);
     // enemy2 = new Level2Enemy();
     // enemy3 = new Level3Enemy();
@@ -73,5 +80,3 @@ function calcScore() {
         score += (deltaTime * 100);
     }
 }
-
-startApp();
