@@ -11,15 +11,7 @@ const app = new Application( {
     height: 500
 });
 
-document.onreadystatechange = (() =>  {
-    console.log(document.readyState);
-    if(document.readyState === 'complete') {
-        
-        document.getElementById('gameWindow').appendChild(app.view);
-        console.log('appshould be loaded');
-        startApp();
-    }
-});
+document.getElementById('gameWindow').appendChild(app.view);
 
 
 let num = 0;
@@ -63,7 +55,7 @@ async function startApp() {
     let delta = 0.0;
 
     player = new Character(0, 0);
-    enemy1 = new Enemy(5,0);
+    //enemy1 = new Enemy(5,0);
     app.stage.addChild(player.sprite);
     for (let i = 0; i < respawns.length; i++) {
         app.stage.addChild(respawns[i].sprite);
@@ -79,3 +71,5 @@ function calcScore() {
         score += (deltaTime * 100);
     }
 }
+
+startApp();
