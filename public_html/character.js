@@ -63,19 +63,20 @@ class Character {
         const maxVelocityX = 10.0;
         const maxVelocityY = 30.0;
         const accelerationX = 30.0;
-        const initialJump = 30.0;
-        const gravity = 100.0;
+        const initialJump = 18.0;
+        const gravity = 50.0;
+        const initalMovement = 5.0;
 
         if (this.moveX < 0) {
             // reset velocity
-            if (this.velocityX > 0)
-                this.velocityX = 0;
+            if (this.velocityX >= 0)
+                this.velocityX = -initalMovement;
             this.velocityX -= accelerationX * deltaTime;
         }
         if (this.moveX > 0) {
             // reset velocity
-            if (this.velocityX < 0)
-                this.velocityX = 0;
+            if (this.velocityX <= 0)
+                this.velocityX = initalMovement;
             this.velocityX += accelerationX * deltaTime;
         }
         if (this.moveY > 0) {

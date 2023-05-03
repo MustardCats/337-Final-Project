@@ -9,7 +9,7 @@ let debugEditorID = 0;
 // respawns hardcoded
 let respawns = [];
 for (let i = 1; i < 6; i++) {
-    respawns.push(new Respawn(i * 100 + 5, 5, i * 100 + 5 + 10, 5));
+    respawns.push(new Respawn(i * 100 + 5, 10, i * 100 + 5 + 10, 0));
 }
 
 respawns[respawns.length - 1].isFinish = true;
@@ -56,7 +56,7 @@ async function saveChunk(chunk) {
     });
 }
 
-function loadChunks(app, playerX, playerY) {
+function loadChunks(app, cameraX, cameraY, playerX, playerY) {
     let chunkPos = posToChunk(playerX, playerY);
     if (chunkPos[0] != oldChunkPos[0] || chunkPos[1] != oldChunkPos[1]) {
         oldChunkPos = chunkPos;
@@ -86,6 +86,7 @@ function loadChunks(app, playerX, playerY) {
                         chunks[chunks.length - 1].tiles.push(resJSON.tiles[i]);
                     }
                     chunks[chunks.length - 1].loadTileSprites();
+                    chunks[chunks.length - 1].setOffset(cameraX, cameraY);
                     app.stage.addChild(chunks[chunks.length - 1].container);
                 }
                 else {
