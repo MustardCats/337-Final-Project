@@ -1,4 +1,4 @@
-/*
+﻿/*
     Code that is currently linked to index.html
 */
 
@@ -9,7 +9,6 @@
 //
 
 /**
- * Various scripts and functions kept for reference
  * <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
     <script src="./camera.js"></script>
     <script src="./input.js"></script>
@@ -18,8 +17,7 @@
     <script src="./character.js"></script>
     <script src="./app.js"></script>
  */
-<<<<<<< HEAD
-function loadGame () {
+function loadGame() {
     console.log(document.readyState);
     var scripts = [
         './sprites.js',
@@ -35,49 +33,26 @@ function loadGame () {
     scripts.forEach(script => {
         console.log(script);
         var scriptToAdd = document.createElement('script');
-        scriptToAdd.setAttribute('src',script);
-        scriptToAdd.setAttribute('async',false);  
+        scriptToAdd.setAttribute('src', script);
+        scriptToAdd.setAttribute('async', false);
         document.body.appendChild(scriptToAdd);
         scriptToAdd.addEventListener("load", () => {
             console.log(`${script} loaded`)
         });
-=======
-// function loadGame () {
-//     console.log(document.readyState);
-//     var scripts = [
-//         './sprites.js',
-//         './respawn.js',
-//         './camera.js',
-//         './input.js',
-//         './chunk.js',
-//         './character.js',
-//         './level.js',
-//         './app.js'
-//     ];
-//     scripts.forEach(script => {
-//         console.log(script);
-//         var scriptToAdd = document.createElement('script');
-//         scriptToAdd.setAttribute('src',script);
-//         scriptToAdd.setAttribute('async',false);  
-//         document.body.appendChild(scriptToAdd);
-//         scriptToAdd.addEventListener("load", () => {
-//             console.log(`${script} loaded`)
-//         });
->>>>>>> 8d5777e73b3ccda42200ffbffa86eeaa90bd42ea
-        
-//         scriptToAdd.addEventListener("error", (ev) => {
-//             console.log("Error on loading file", ev);
-//         });
-//     });
-//     document.getElementById('playGameButton').style.display = "none";
-//     console.log(document.readyState);
-// }
+
+        scriptToAdd.addEventListener("error", (ev) => {
+            console.log("Error on loading file", ev);
+        });
+    });
+    document.getElementById('playGameButton').style.display = "none";
+    console.log(document.readyState);
+}
 
 function addUser() {
     let url = '/add/user';
     let u = document.getElementById('addUserField')
     let ps = document.getElementById('addUserPassword');
-    if(u.value == '' || ps.value == '') {
+    if (u.value == '' || ps.value == '') {
         console.log('Fields cannot be empty');
         return;
     }
@@ -121,11 +96,7 @@ function showAddUserPopup() {
  * This function just exits out of all popups so we don't need to specify specific ones. 
  */
 function exitPopup() {
-    Array.from(document.querySelectorAll('.container-popup')).forEach(function(popup) {
+    Array.from(document.querySelectorAll('.container-popup')).forEach(function (popup) {
         popup.style.display = "none";
     });
 }
-
-setInterval( () => {
-    //window.location.reload();
-},5000);

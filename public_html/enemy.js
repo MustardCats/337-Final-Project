@@ -12,27 +12,16 @@ class BasicEnemy {
     spawnX = 5;
     spawnY = 3;
     radius = 8;
-<<<<<<< HEAD
     velocityX = 0.0;
     velocityY = 0.0;
     isGrounded = false;
     debugMode = false;
     isleft = false; 
     isright = true;
-=======
-    //velocityX = 0.0;
-    //velocityY = 0.0
-    //isGrounded = false;
-    debugMode = true;
-    counter = 0;
-
->>>>>>> 8d5777e73b3ccda42200ffbffa86eeaa90bd42ea
 
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.sprite.width = 32;
-        this.sprite.height = 32;
     }
 
     /*movement(deltaTime) {
@@ -166,16 +155,13 @@ class BasicEnemy {
     }
 }
 
-<<<<<<< HEAD
-class Patrick {
-    x = 5;
-}
-=======
 class Level1Enemy extends BasicEnemy {
 
     constructor(x, y) {
         super(x, y);
         this.sprite = new PIXI.Sprite(spritesheet.textures['Enemy 1 Left.png']);
+        this.sprite.width = 32;
+        this.sprite.height = 32;
     }
 
     /*moves the level one enemy in a set path from left to right. 
@@ -281,4 +267,4 @@ class Level2Enemy extends BasicEnemy {
         counter +=1;
     }
 }*/
->>>>>>> 8d5777e73b3ccda42200ffbffa86eeaa90bd42ea
+
