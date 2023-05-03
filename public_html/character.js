@@ -154,7 +154,23 @@ class Character {
         this.spawnY = y;
     }
 
-    havePowerUp(x,y){
+    // returns the x location of the player sprite
+    xLocation(){ 
+        return this.x;
+    }
 
+    // returns the y location of the player sprite
+    yLocation(){ 
+        return this.y;
+    }
+
+    // sets the height of the player sprite
+    setSpriteheight(newHeight){
+        this.sprite.height = newHeight;
+    }
+
+    // sets the width of the player sprite
+    setSpritewidth(newWidth){ 
+        this.sprite.width = newWidth;
     }
 }
