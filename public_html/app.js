@@ -47,6 +47,7 @@ function gameLoop() {
  * js and event listeners.
  */
 async function startApp() {
+    document.getElementById('playGameButton').style.display = "none";
     //Add game to gameWindow on document
     document.getElementById('gameWindow').appendChild(app.view);
     //const test = await PIXI.Assets.load('sprites/test.png');
