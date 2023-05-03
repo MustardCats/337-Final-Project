@@ -19,23 +19,22 @@ class Enemy {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.sprite = new PIXI.Sprite(spritesheet.textures['enemy1left']);
+        this.sprite = new PIXI.Sprite(spritesheet.textures['Enemy 1 Left.png']);
         this.sprite.width = 32;
         this.sprite.height = 32;
     }
 
     // FIX ME
     setMove(moveX) {
-        if (isright){ 
-            if (Math.abs(moveX) == 1){
-                this.moveX = moveX;
-            }
-        }
+        if (Math.abs(moveX) == 1)
+            this.moveX = moveX;
+        if (Math.abs(moveY) == 1)
+            this.moveY = moveY;
+    }
         
     
         //if (Math.abs(moveY) == 1)
             //this.moveY = moveY;
-    }
 
     /*checkCollision(vectorX, vectorY) {
         this.isGrounded = false;

@@ -26,6 +26,7 @@ function loadGame () {
         './level.js',
         './chunk.js',
         './character.js',
+        './enemy.js',
         './app.js'
     ];
     scripts.forEach(script => {
