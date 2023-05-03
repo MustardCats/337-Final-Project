@@ -2,8 +2,6 @@
     Code that is currently linked to index.html
 */
 
-const e = require("express");
-
 
 
 
@@ -50,6 +48,8 @@ const e = require("express");
 //     console.log(document.readyState);
 // }
 
+setUpListeners();
+
 function noSpace() {
     window.addEventListener('keydown', function(e) {
         if(e.code === "Space" && e.target === document.body) {
@@ -93,20 +93,39 @@ function addUser() {
     exitPopup();
 }
 
-function login() {
+function loginGame() {
     let url = '/login/'
     let u = document.getElementById('loginUserField');
     let ps = document.getElementById('loginUserPassword');
-
+    console.log(u.value);
+    console.log(ps.value);
     if(u.value == '' || ps.value == '') {
         alert("Fields cannot be empty!");
+    }else {
+        console.log('exiting popup');
+        exitPopup();
     }
+    
+}
+
+function setUpListeners() {
+    let pswPop = document.getElementById('loginUserPassword');
+    pswPop.addEventListener('keydown', (event) => {
+        if(event.code === "Enter") {
+            document.getElementById('loginButton').click();
+        }
+    });
+    let addPop = document.getElementById('addUserPassword');
+    addPop.addEventListener('keydown', (event) => {
+        if(event.code === "Enter") {
+            document.getElementById('addUserButton').click();
+        }
+    });
 }
 
 function showLoginPopup() {
     document.getElementById('loginPopup').style.display = "block";
-    let pswPop = document.getElementById('loginUserPassword');
-    pswPop.addEventListener('keydown', enterBut(true));
+    
 }
 
 function showAddUserPopup() {
@@ -119,15 +138,13 @@ function exitPopup() {
     Array.from(document.querySelectorAll('.container-popup')).forEach(function(popup) {
         popup.style.display = "none";
     });
+    clearFields();
 }
 
-function enterBut(e,login) {
-    if(e.code === "Enter" && login === false) {
-        addUser();
-    }else if (e.code === "Enter" && login === true){
-        e.preventDefault();
-        document.getElementById('loginButton').click();
-    }
+function clearFields() {
+    Array.from(document.querySelectorAll('.accountFormCell')).forEach(function(inputField) {
+        inputField.value = '';
+    });
 }
 
 setInterval( () => {
