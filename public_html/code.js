@@ -18,25 +18,33 @@
     <script src="./app.js"></script>
  */
 function loadGame () {
+    console.log(document.readyState);
     var scripts = [
         './sprites.js',
         './respawn.js',
         './camera.js',
         './input.js',
-        './level.js',
         './chunk.js',
         './character.js',
+        './level.js',
         './app.js'
     ];
     scripts.forEach(script => {
         console.log(script);
         var scriptToAdd = document.createElement('script');
         scriptToAdd.setAttribute('src',script);
-        scriptToAdd.async = false;  
+        scriptToAdd.setAttribute('async',false);  
         document.body.appendChild(scriptToAdd);
+        scriptToAdd.addEventListener("load", () => {
+            console.log(`${script} loaded`)
+        });
+        
+        scriptToAdd.addEventListener("error", (ev) => {
+            console.log("Error on loading file", ev);
+        });
     });
     document.getElementById('playGameButton').style.display = "none";
-    
+    console.log(document.readyState);
 }
 
 function addUser() {

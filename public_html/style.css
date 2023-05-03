@@ -14,7 +14,9 @@ body {
     width: 750px;
     height: 100%;
     right: 30%;
-    left:30%;
+    left:20%;
+    top: 0;
+    bottom: 0;
     background-color: aquamarine;
 }
 

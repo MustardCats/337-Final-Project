@@ -1,4 +1,3 @@
-
 class Respawn {
     width = 2.0;
     height = 2.0;

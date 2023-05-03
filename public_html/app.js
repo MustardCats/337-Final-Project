@@ -13,6 +13,7 @@ const app = new Application( {
 
 document.getElementById('gameWindow').appendChild(app.view);
 
+
 let num = 0;
 let deltaTime = 0.0;
 let start = Date.now();
