@@ -7,23 +7,20 @@ class BasicEnemy {
     x = 0.0;
     y = 0.0;
     sprite = null;
-    moveX = 0;
-    moveY = 0;
     spawnX = 5;
     spawnY = 3;
     radius = 8;
+    isLeft = true;
     //velocityX = 0.0;
     //velocityY = 0.0
     //isGrounded = false;
-    debugMode = true;
+    //debugMode = true;
     counter = 0;
 
 
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.sprite.width = 32;
-        this.sprite.height = 32;
     }
 
     /*movement(deltaTime) {
@@ -114,7 +111,7 @@ class BasicEnemy {
             this.velocityX = -maxVelocityX;
         }
         this.checkCollision(this.velocityX * deltaTime, this.velocityY * deltaTime);
-    }*/
+    }
 
     toggleDebugMode() {
         if (this.debugMode) {
@@ -128,7 +125,7 @@ class BasicEnemy {
     debugVelocity(deltaTime) {
         this.x += this.moveX * 10.0 * deltaTime;
         this.y += this.moveY * 10.0 * deltaTime;
-    }
+    }*/
 
     kill() {
         this.x = this.spawnX;
@@ -153,7 +150,7 @@ class BasicEnemy {
     }
 
     setOffset(offsetX, offsetY) {
-        this.sprite.position.set((16 * this.x) + offsetX - 8 - 8, -(16 * this.y) + offsetY + 8 - tileSize);
+        this.sprite.position.set((32 * this.x) + offsetX - 16 - 16, -(32 * this.y) + offsetY + 16 - tileSize);
     }
 }
 
@@ -162,21 +159,25 @@ class Level1Enemy extends BasicEnemy {
     constructor(x, y) {
         super(x, y);
         this.sprite = new PIXI.Sprite(spritesheet.textures['Enemy 1 Left.png']);
+        this.sprite.width = 64;
+        this.sprite.height = 64;
     }
 
     /*moves the level one enemy in a set path from left to right. 
     The level 1 enemy moves 5 pixels in either direction.
     */
-    movement(deltaTime) {
-        if (counter % 10 == 0) {
-            counter = 0;
+    movement() {
+        if (this.x <= 40) {
+            this.x += (2/ 10);
+            this.isLeft = false;
+        } else if (this.x > 40 && this.x < 50 && (this.isLeft != true)) {
+            this.x += (2 / 10);
+        } else if (this.x > 40 && this.x < 50  && (this.isLeft == true)){
+            this.x -= (1 / 10);
+        }else if (this.x >=50){
+            this.isLeft = true;
+            this.x -= (1 / 10);
         }
-        if (counter < 5) {
-            x += 1;
-        } else {
-            x -= 1;
-        }
-        counter += 1;
     }
 }
 
@@ -191,15 +192,15 @@ class Level2Enemy extends BasicEnemy {
     }
 
     movement(deltaTime) {
-        if (counter % 10 == 0) {
-            counter = 0;
+        if (this.counter % 10 == 0) {
+            this.counter = 0;
         }
-        if (counter < 5) {
-            x += 1;
+        if (this.counter < 5) {
+            this.x += 1;
         } else {
-            x -= 1;
+            this.x -= 1;
         }
-        counter += 1;
+        this.counter += 1;
     }
 
     updateVelocity(deltaTime) {

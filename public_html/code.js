@@ -21,6 +21,7 @@ function loadGame () {
     console.log(document.readyState);
     var scripts = [
         './sprites.js',
+        './enemy.js',
         './respawn.js',
         './camera.js',
         './input.js',

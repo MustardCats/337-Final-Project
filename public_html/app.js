@@ -37,6 +37,8 @@ function gameLoop() {
     setCamPos(-(player.x * 32) + 375, (player.y * 32) + 250);
     setLevelCameraOffset(camX, camY);
     player.setOffset(camX, camY);
+    enemy1.setOffset(camX, camY);
+    enemy1.movement(deltaTime);
     
     // render
     window.requestAnimationFrame(gameLoop);
@@ -61,11 +63,13 @@ async function startApp() {
     }
     let delta = 0.0;
 
+    // adds sprites to the stage
     player = new Character(5, 3);
-    enemy1 = new Level1Enemy(40, 14.2);
+    enemy1 = new Level1Enemy(40, 13);
     // enemy2 = new Level2Enemy();
     // enemy3 = new Level3Enemy();
     app.stage.addChild(player.sprite);
+    app.stage.addChild(enemy1.sprite);
     for (let i = 0; i < respawns.length; i++) {
         app.stage.addChild(respawns[i].sprite);
     }
