@@ -62,7 +62,7 @@ async function startApp() {
     let delta = 0.0;
 
     player = new Character(5, 3);
-    //enemy1 = new Level1Enemy(40, 14.2);
+    enemy1 = new Level1Enemy(40, 14.2);
     // enemy2 = new Level2Enemy();
     // enemy3 = new Level3Enemy();
     app.stage.addChild(player.sprite);
