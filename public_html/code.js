@@ -102,5 +102,5 @@ function exitPopup() {
 }
 
 setInterval( () => {
-    window.location.reload();
+    //window.location.reload();
 },5000);
