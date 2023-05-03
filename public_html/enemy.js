@@ -1,5 +1,5 @@
 
-class Enemy {
+class BasicEnemy {
     // initial coordinates
     x = 0.0;
     y = 0.0;
@@ -9,34 +9,36 @@ class Enemy {
     spawnX = 5;
     spawnY = 3;
     radius = 8;
-    velocityX = 0.0;
-    velocityY = 0.0;
-    isGrounded = false;
+    //velocityX = 0.0;
+    //velocityY = 0.0
+    //isGrounded = false;
     debugMode = true;
-    isleft = false; 
-    isright = true;
+    counter = 0;
+
 
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.sprite = new PIXI.Sprite(spritesheet.textures['Enemy 1 Left.png']);
         this.sprite.width = 32;
         this.sprite.height = 32;
     }
 
-    // FIX ME
-    setMove(moveX) {
-        if (Math.abs(moveX) == 1)
-            this.moveX = moveX;
-        if (Math.abs(moveY) == 1)
-            this.moveY = moveY;
+    /*movement(deltaTime) {
+        if (counter % 10 == 0) {
+            counter = 0;
+        }
+        if (counter < 5) {
+            x += 1;
+        } else {
+            x -= 1;
+        }
+        counter +=1;
     }
-        
-    
-        //if (Math.abs(moveY) == 1)
-            //this.moveY = moveY;
 
-    /*checkCollision(vectorX, vectorY) {
+    //if (Math.abs(moveY) == 1)
+    //this.moveY = moveY;
+
+    checkCollision(vectorX, vectorY) {
         this.isGrounded = false;
         let potentialX = this.x + vectorX;
         let potentialY = this.y + vectorY;
@@ -65,7 +67,7 @@ class Enemy {
         }
 
         return true;
-    }*/
+    }
 
     updateVelocity(deltaTime) {
         const maxVelocityX = 10.0;
@@ -109,7 +111,7 @@ class Enemy {
             this.velocityX = -maxVelocityX;
         }
         this.checkCollision(this.velocityX * deltaTime, this.velocityY * deltaTime);
-    }
+    }*/
 
     toggleDebugMode() {
         if (this.debugMode) {
@@ -120,7 +122,7 @@ class Enemy {
         }
     }
 
-    debugVelocity (deltaTime) {
+    debugVelocity(deltaTime) {
         this.x += this.moveX * 10.0 * deltaTime;
         this.y += this.moveY * 10.0 * deltaTime;
     }
@@ -148,6 +150,66 @@ class Enemy {
     }
 
     setOffset(offsetX, offsetY) {
-        this.sprite.position.set((16 * this.x) + offsetX - 8 - 8, -(16 * this.y) + offsetY + 8 -tileSize);
+        this.sprite.position.set((16 * this.x) + offsetX - 8 - 8, -(16 * this.y) + offsetY + 8 - tileSize);
     }
 }
+
+class Level1Enemy extends BasicEnemy{
+
+    constructor(x,y){
+        super(x,y);
+        this.sprite = new PIXI.Sprite(spritesheet.textures['Enemy 1 Left.png']);
+    }
+
+    movement(deltaTime) {
+        if (counter % 10 == 0) {
+            counter = 0;
+        }
+        if (counter < 5) {
+            x += 1;
+        } else {
+            x -= 1;
+        }
+        counter +=1;
+    }
+}
+
+/*class Level2Enemy extends BasicEnemy{
+
+    constructor(x,y){
+        super(x,y);
+        this.sprite = new PIXI.Sprite(spritesheet.textures['Enemy 2 Left.png']);
+    }
+
+    movement(deltaTime) {
+        if (counter % 10 == 0) {
+            counter = 0;
+        }
+        if (counter < 5) {
+            x += 1;
+        } else {
+            x -= 1;
+        }
+        counter +=1;
+    }
+}
+
+class Level3Enemy extends BasicEnemy{
+
+    constructor(x,y){
+        super(x,y);
+        this.sprite = new PIXI.Sprite(spritesheet.textures['Enemy 3 Left.png']);
+    }
+
+    movement(deltaTime) {
+        if (counter % 10 == 0) {
+            counter = 0;
+        }
+        if (counter < 5) {
+            x += 1;
+        } else {
+            x -= 1;
+        }
+        counter +=1;
+    }
+}*/

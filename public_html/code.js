@@ -17,78 +17,86 @@
     <script src="./character.js"></script>
     <script src="./app.js"></script>
  */
-function loadGame () {
-    var scripts = [
-        './sprites.js',
-        './respawn.js',
-        './camera.js',
-        './input.js',
-        './level.js',
-        './chunk.js',
-        './character.js',
-        './enemy.js',
-        './app.js'
-    ];
-    scripts.forEach(script => {
-        console.log(script);
-        var scriptToAdd = document.createElement('script');
-        scriptToAdd.setAttribute('src',script);
-        scriptToAdd.async = false;  
-        document.body.appendChild(scriptToAdd);
-    });
-    document.getElementById('playGameButton').style.display = "none";
-    
-}
-
-function addUser() {
-    let url = '/add/user';
-    let u = document.getElementById('addUserField')
-    let ps = document.getElementById('addUserPassword');
-    if(u.value == '' || ps.value == '') {
-        console.log('Fields cannot be empty');
-        return;
+    function loadGame () {
+        console.log(document.readyState);
+        var scripts = [
+            './sprites.js',
+            './respawn.js',
+            './camera.js',
+            './input.js',
+            './chunk.js',
+            './character.js',
+            './level.js',
+            './app.js'
+        ];
+        scripts.forEach(script => {
+            console.log(script);
+            var scriptToAdd = document.createElement('script');
+            scriptToAdd.setAttribute('src',script);
+            scriptToAdd.setAttribute('async',false);  
+            document.body.appendChild(scriptToAdd);
+            scriptToAdd.addEventListener("load", () => {
+                console.log(`${script} loaded`)
+            });
+            
+            scriptToAdd.addEventListener("error", (ev) => {
+                console.log("Error on loading file", ev);
+            });
+        });
+        document.getElementById('playGameButton').style.display = "none";
+        console.log(document.readyState);
     }
-    let p = fetch(url, {
-        method: "POST",
-
-        body: JSON.stringify({
-            username: u.value,
-            password: ps.value
-        }),
-
-        headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            "Timestamp": Date.now()
+    
+    function addUser() {
+        let url = '/add/user';
+        let u = document.getElementById('addUserField')
+        let ps = document.getElementById('addUserPassword');
+        if(u.value == '' || ps.value == '') {
+            console.log('Fields cannot be empty');
+            return;
         }
-    });
-    let p2 = p.then((res) => {
-        return res.text();
-    }).then((text) => {
-        console.log(text);
-    }).catch((err) => {
-        console.log(err);
-    });
-    u.value = '';
-    ps.value = '';
-    exitPopup();
-}
-
-function login() {
-    let url = '/login/'
-}
-
-function showLoginPopup() {
-    document.getElementById('loginPopup').style.display = "block";
-}
-
-function showAddUserPopup() {
-    document.getElementById('addUserPopup').style.display = "block";
-}
-/**
- * This function just exits out of all popups so we don't need to specify specific ones. 
- */
-function exitPopup() {
-    Array.from(document.querySelectorAll('.container-popup')).forEach(function(popup) {
-        popup.style.display = "none";
-    });
-}
+        let p = fetch(url, {
+            method: "POST",
+    
+            body: JSON.stringify({
+                username: u.value,
+                password: ps.value
+            }),
+    
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Timestamp": Date.now()
+            }
+        });
+        let p2 = p.then((res) => {
+            return res.text();
+        }).then((text) => {
+            console.log(text);
+        }).catch((err) => {
+            console.log(err);
+        });
+        u.value = '';
+        ps.value = '';
+        exitPopup();
+    }
+    
+    function login() {
+        let url = '/login/'
+    }
+    
+    function showLoginPopup() {
+        document.getElementById('loginPopup').style.display = "block";
+    }
+    
+    function showAddUserPopup() {
+        document.getElementById('addUserPopup').style.display = "block";
+    }
+    /**
+     * This function just exits out of all popups so we don't need to specify specific ones. 
+     */
+    function exitPopup() {
+        Array.from(document.querySelectorAll('.container-popup')).forEach(function(popup) {
+            popup.style.display = "none";
+        });
+    }
+    
