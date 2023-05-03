@@ -11,7 +11,16 @@ const app = new Application( {
     height: 500
 });
 
-document.getElementById('gameWindow').appendChild(app.view);
+document.onreadystatechange = (() =>  {
+    console.log(document.readyState);
+    if(document.readyState === 'complete') {
+        
+        document.getElementById('gameWindow').appendChild(app.view);
+        console.log('appshould be loaded');
+        startApp();
+    }
+});
+
 
 let num = 0;
 let deltaTime = 0.0;
@@ -70,5 +79,3 @@ function calcScore() {
         score += (deltaTime * 100);
     }
 }
-
-startApp();

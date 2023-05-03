@@ -37,7 +37,7 @@ function loadGame () {
         document.body.appendChild(scriptToAdd);
     });
     document.getElementById('playGameButton').style.display = "none";
-    
+    console.log(document.readyState);
 }
 
 function addUser() {
