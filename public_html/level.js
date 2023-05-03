@@ -9,7 +9,7 @@ let debugEditorID = 0;
 // respawns hardcoded
 let respawns = [];
 for (let i = 1; i < 6; i++) {
-    respawns.push(new Respawn(i * 100 + 5, 10, i * 100 + 5 + 10, 0));
+    respawns.push(new Respawn(i * 100 + 5, 5, i * 100 + 5 + 10, 5));
 }
 
 respawns[respawns.length - 1].isFinish = true;
