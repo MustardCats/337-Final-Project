@@ -6,6 +6,7 @@
 */
 const Application = PIXI.Application;
 
+// creates the canvas
 const app = new Application( {
     width: 750,
     height: 500
@@ -19,7 +20,16 @@ let maxTime = 600;
 let renderer = PIXI.autoDetectRenderer(app.width, app.height);
 let player = null;
 let enemy1 = null;
+let enemy2 = null; 
+let enemy3 = null;
+let shake1 = null;
+let shake2 = null;
+let shake3 = null;
 
+/**  main game loop: 
+ * this redraws the canvas
+ * 
+ */
 function gameLoop() {
     // time
     let end = Date.now();
@@ -36,6 +46,10 @@ function gameLoop() {
     player.setOffset(camX, camY);
     enemy1.setOffset(camX, camY);
     enemy1.movement(deltaTime);
+    enemy2.setOffset(camX, camY);
+    enemy2.movement(deltaTime);
+    enemy3.setOffset(camX, camY);
+    enemy3.movement(deltaTime);
     
     // render
     window.requestAnimationFrame(gameLoop);
@@ -61,19 +75,24 @@ async function startApp() {
     let delta = 0.0;
 
     // adds sprites to the stage
-    player = new Character(5, 3);
+    player = new Character(5, 10);
     enemy1 = new Level1Enemy(40, 13);
-    // enemy2 = new Level2Enemy();
-    // enemy3 = new Level3Enemy();
+    enemy2 = new Level2Enemy(5,7);
+    enemy3 = new Level3Enemy(6,8);
     app.stage.addChild(player.sprite);
     app.stage.addChild(enemy1.sprite);
+    app.stage.addChild(enemy2.sprite);
+    app.stage.addChild(enemy3.sprite);
     for (let i = 0; i < respawns.length; i++) {
         app.stage.addChild(respawns[i].sprite);
     }
 
     gameLoop();
 }
-
+/**
+ * This method calculates the player's score based on the time it 
+ * took the player to get through the game.
+ */
 function calcScore() {
     if (score > maxTime) {
         score = 1000;
