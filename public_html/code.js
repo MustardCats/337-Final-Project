@@ -9,6 +9,7 @@
 //
 
 /**
+ * Various scripts and functions kept for reference
  * <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
     <script src="./camera.js"></script>
     <script src="./input.js"></script>
@@ -17,35 +18,35 @@
     <script src="./character.js"></script>
     <script src="./app.js"></script>
  */
-function loadGame () {
-    console.log(document.readyState);
-    var scripts = [
-        './sprites.js',
-        './respawn.js',
-        './camera.js',
-        './input.js',
-        './chunk.js',
-        './character.js',
-        './level.js',
-        './app.js'
-    ];
-    scripts.forEach(script => {
-        console.log(script);
-        var scriptToAdd = document.createElement('script');
-        scriptToAdd.setAttribute('src',script);
-        scriptToAdd.setAttribute('async',false);  
-        document.body.appendChild(scriptToAdd);
-        scriptToAdd.addEventListener("load", () => {
-            console.log(`${script} loaded`)
-        });
+// function loadGame () {
+//     console.log(document.readyState);
+//     var scripts = [
+//         './sprites.js',
+//         './respawn.js',
+//         './camera.js',
+//         './input.js',
+//         './chunk.js',
+//         './character.js',
+//         './level.js',
+//         './app.js'
+//     ];
+//     scripts.forEach(script => {
+//         console.log(script);
+//         var scriptToAdd = document.createElement('script');
+//         scriptToAdd.setAttribute('src',script);
+//         scriptToAdd.setAttribute('async',false);  
+//         document.body.appendChild(scriptToAdd);
+//         scriptToAdd.addEventListener("load", () => {
+//             console.log(`${script} loaded`)
+//         });
         
-        scriptToAdd.addEventListener("error", (ev) => {
-            console.log("Error on loading file", ev);
-        });
-    });
-    document.getElementById('playGameButton').style.display = "none";
-    console.log(document.readyState);
-}
+//         scriptToAdd.addEventListener("error", (ev) => {
+//             console.log("Error on loading file", ev);
+//         });
+//     });
+//     document.getElementById('playGameButton').style.display = "none";
+//     console.log(document.readyState);
+// }
 
 function addUser() {
     let url = '/add/user';
@@ -99,3 +100,7 @@ function exitPopup() {
         popup.style.display = "none";
     });
 }
+
+setInterval( () => {
+    window.location.reload();
+},5000);
