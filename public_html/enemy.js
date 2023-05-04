@@ -115,21 +115,19 @@ class Level3Enemy extends BasicEnemy{
 
     /** moves the level 3 enemy in a set path in the shape of a rectangle. */
     movement() {
-        if (this.x <= 5) {
-            this.x += (2 / 10);
-            this.y += 3;
+        if (this.x <= 280) {
+            this.x += (1 / 10);
             this.isLeft = false;
-        } else if (this.x > 5 && this.x < 15 && (this.isLeft != true)) {
-            this.x += (2 / 10);
+        } else if (this.x > 280 && this.x < 300 && (this.isLeft != true)) {
+            this.x += (1 / 10);
 
-        } else if (this.x > 5 && this.x < 15 && (this.isLeft == true)) {
-            this.x -= (2.5 / 10);
+        } else if (this.x > 5 && this.x < 300 && (this.isLeft == true)) {
+            this.x -= (2 / 10);
             //this.y -= (1/10);
 
-        } else if (this.x >= 15) {
+        } else if (this.x >= 300) {
             this.isLeft = true;
-            this.x -= (2.5 / 10);
-            this.y -= 3;
+            this.x -= (2 / 10);
         }
     }
 }
