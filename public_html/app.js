@@ -85,7 +85,7 @@ async function startApp() {
     // adds sprites to the stage
     player = new Character(6, 10);
     enemy1 = new Level1Enemy(40, 13);
-    enemy2 = new Level2Enemy(5,7);
+    enemy2 = new Level2Enemy(185,4);
     enemy3 = new Level3Enemy(6,8);
     app.stage.addChild(player.sprite);
     app.stage.addChild(enemy1.sprite);

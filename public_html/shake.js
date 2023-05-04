@@ -26,6 +26,20 @@ class shake {
     yLocation() {
         return this.y;
     }
+    
+    /**
+     * This function checks if a sprite is within a hit box of another object/ sprite.
+     * player: the sprite that player is operating 
+     */
+    checkIntersect(player) {
+        if ((player.x > this.x - (this.width / 2.0) && player.x < this.x + (this.width / 2.0)) &&
+            (player.y > this.y - (this.height / 2.0) && player.y < this.y + (this.height / 2.0)))
+        {
+            player.kill(this.respawnX, this.respawnY);
+            player.x = this.respawnX;
+            player.y = this.respawnY;
+        }
+    }
 
     /**
      * This function sets the offset of a specific sprite, used for rendering.
