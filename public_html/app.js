@@ -93,7 +93,7 @@ async function startApp() {
     enemy2 = new Level2Enemy(185,4);
     enemy3 = new Level3Enemy(6,8);
     shake1 = new shake(75,3);
-    shake2 = new shake(163,11);
+    shake2 = new shake(161,11);
     //shake3 = new shake(0,0);
     app.stage.addChild(player.sprite);
     app.stage.addChild(enemy1.sprite);
