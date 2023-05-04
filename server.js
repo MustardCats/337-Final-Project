@@ -66,10 +66,18 @@ function authenticate(username,password) {
 app.get('/gameEnd/:id/:score', async (req, res) => {
     let i = req.params.id;
     let s = req.params.score;
-    let check = User.find({_id:id}).exec();
-    check.then((results) => {
+    console.log('Score server recieves', s);
+    console.log('Server recieves id: ',i);
+    let check = User.find({_id:i}).exec();
+    check.then(async (results) =>  {
         if(check != null) {
-            let u = User.findOneAndUpdate({_id: i},{"$set": {score: s}}).exec();
+            console.log('Document results: ',results);
+            console.log('user curr score', results[0].bestTime);
+            if(results[0].bestTime > s || results[0].bestTime == 0) {
+                
+                console.log('adding score ',s);
+                let u = await User.findOneAndUpdate({_id:i},{bestTime: s}).exec();
+            }
             res.end('score updated')
         }else {
             res.end('Need to login!');
@@ -110,8 +118,8 @@ app.post('/add/user',async (req,res) => {
     let hash = authenticate(u,p);
     let check = User.find({hashedPsw:hash}).exec(); 
     check.then((doc) => {
-        if(doc == null) {
-            res.end('Cannot make that user');
+        if(doc != null) {
+            res.end('no');
         }else if(u == '') {
             //If there is no username do nothing
             res.end('No username, cannnot add user');

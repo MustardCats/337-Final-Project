@@ -100,7 +100,8 @@ function addUser() {
  * Logs the user out of the current session by getting rid of the cookies.
  */
 function logout() {
-    let b = document.getElementById('loginButton').style.display = "none";
+    let b = document.getElementById('loginButton').style.display = "block";
+    let 
 }
 /**
  * /login/:user/:pass <-- URL format
@@ -124,6 +125,11 @@ function loginGame() {
             console.log(err);
         });
         console.log('exiting popup');
+        let playerID = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("whoami="))
+        ?.split("=")[1];
+        console.log('Session ID: ', playerID);
         exitPopup();
     }
     
@@ -181,10 +187,12 @@ setInterval( () => {
 function onGameEnd() {
     let url = '/gameEnd/'
     let score = calcScore();
+    console.log('Score at end of game: ', score);
     let playerID = document.cookie
     .split("; ")
     .find((row) => row.startsWith("whoami="))
     ?.split("=")[1];
+    console.log(playerID);
     url += playerID + "/" +score;
     let p = fetch(url);
     p.then((results) => {
