@@ -39,7 +39,7 @@ class Respawn {
             player.y = this.respawnY;
             if (this.isFinish) {
                 // post
-
+                onGameEnd();
             }
         }
     }
