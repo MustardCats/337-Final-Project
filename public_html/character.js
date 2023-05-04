@@ -1,4 +1,7 @@
-
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: character.js
+ */
 class Character {
     x = 0.0;
     y = 0.0;

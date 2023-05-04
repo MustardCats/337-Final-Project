@@ -1,6 +1,8 @@
-/** 
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: enemy.js
  * This class is the object representation of the Enemy sprite. This class handles the basic 
- * functionality of movement and if it is killed.
+ * functionality of movement and if it is killed
  */
 
 class BasicEnemy {

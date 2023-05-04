@@ -1,3 +1,9 @@
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: chunk.js
+ * This class is the object representation of a chunk.
+ */
+
 const chunkSize = 8; // number of tiles in each dimension
 const tileSize = 32; // number of pixels for each tile
 const chunkPixelSize = chunkSize * tileSize; // number of pixels for each chunk

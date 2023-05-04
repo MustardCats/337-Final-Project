@@ -1,9 +1,12 @@
 /** 
-    Added the app here. Pixi.js is already installed and linked to the document so it might be good to start designing the level here. 
-    I just need to figure out how to hide the application until we need it. Probably through a seperate
-    html file. 
-    the app.js is linked up at the game.html, so use the game.html to check various application graphics. 
-*/
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: app.js
+ * 
+ * Added the app here. Pixi.js is already installed and linked to the document so it might be good to start designing the level here. 
+ * I just need to figure out how to hide the application until we need it. Probably through a seperate
+ * html file. 
+ * the app.js is linked up at the game.html, so use the game.html to check various application graphics.
+ */
 const Application = PIXI.Application;
 
 // creates the canvas

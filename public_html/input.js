@@ -1,4 +1,9 @@
-
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: input.js
+ * This javascript file gives functionality to the different keys to allow the 
+ * player to move the character. 
+ */
 let keys = {};
 let prev_keys = {};
 let mouse = {};

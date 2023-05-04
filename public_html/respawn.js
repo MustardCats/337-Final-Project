@@ -1,3 +1,9 @@
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: respawn.js
+ * This class allows the character to respawn if they fall off a level or is hit 
+ * by an enemy.
+ */
 class Respawn {
     width = 2.0;
     height = 2.0;
