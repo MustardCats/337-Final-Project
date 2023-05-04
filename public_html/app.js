@@ -59,9 +59,9 @@ function gameLoop() {
     enemy3.setOffset(camX, camY);
     enemy3.movement(deltaTime);
 
-    shake1.setOffset(camX,camY);
-    shake2.setOffset(camX,camY);
-    shake3.setOffset(camX,camY);
+    //shake1.setOffset(camX,camY);
+    //shake2.setOffset(camX,camY);
+    //shake3.setOffset(camX,camY);
 
 
     respawnTimer += deltaTime;
