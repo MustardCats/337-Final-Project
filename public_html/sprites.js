@@ -1,6 +1,11 @@
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: sprites.js
+ * This class links the different sprite pictures to the game. 
+ * We used https://pixijs.io/guides/basics/sprite-sheets.html to figure out how to 
+ * use a spritesheet.
+ */
 
-// used this site to help me figure out spritesheets :)
-// https://pixijs.io/guides/basics/sprite-sheets.html
 
 const atlasData = {
 	"frames": {

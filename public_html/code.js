@@ -1,9 +1,9 @@
-﻿/*
-    Code that is currently linked to index.html
-*/
-
-
-
+﻿/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: code.js
+ * 
+ * Code that is currently linked to index.html
+ */
 
 //Adding the user. 
 //

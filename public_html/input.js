@@ -1,3 +1,9 @@
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: input.js
+ * This javascript file gives functionality to the different keys to allow the 
+ * player to move the character. 
+ */
 
 let keys = {};
 let prev_keys = {};
@@ -45,23 +51,25 @@ function isMousePress(button) {
     return mouse[button] && !prev_mouse[button];
 }
 
+// creates key controls to handle character movement
+
 function handleInput(renderer, player, deltaTime) {
-    if (isKeyDown('A')) {
+    if (isKeyDown('A')) { // moves sprite left
         player.setMove(-1, 0);
     }
-    if (isKeyDown('D')) {
+    if (isKeyDown('D')) { // moves sprite right
         player.setMove(1, 0);
     }
-    if (isKeyDown('S')) {
+    if (isKeyDown('S')) { // moves character down 
         player.setMove(0, -1);
     }
-    if (isKeyDown('W')) {
+    if (isKeyDown('W')) { // moves character up 
         player.setMove(0, 1);
     }
-    if (isKeyPress('P')) {
+    if (isKeyPress('P')) { // prints out characters location 
         console.log("Player Pos: " + player.x + " " + player.y);
     }
-    if (isKeyPress('F')) {
+    if (isKeyPress('F')) { 
         player.toggleDebugMode();
     }
     if (isKeyPress('J')) {

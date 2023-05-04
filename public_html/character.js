@@ -1,4 +1,10 @@
-
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: character.js
+ * 
+ * This class represents the sprite that the player uses. This file handles the functionality of 
+ * the player, including movement, respawning and interaction with other objects in the game
+ */
 class Character {
     x = 0.0;
     y = 0.0;
@@ -21,6 +27,11 @@ class Character {
         this.sprite.height = 64;
     }
 
+    /**
+     * This function sets the position of the sprite, used for moving the sprite.
+     * moveX: amount to move sprite in x direction 
+     * movey: amount to move sprite in y direction
+     */
     setMove(moveX, moveY) {
         if (Math.abs(moveX) == 1)
             this.moveX = moveX;
@@ -28,6 +39,11 @@ class Character {
             this.moveY = moveY;
     }
 
+    /**
+     * This function checks if the player has hit another object in the game.
+     * vectorX: 
+     * vectorY: 
+     */
     checkCollision(vectorX, vectorY) {
         this.isGrounded = false;
         let potentialX = this.x + vectorX;
@@ -59,6 +75,10 @@ class Character {
         return true;
     }
 
+    /**
+     * This function changes the players velocity.
+     * deltaTime: 
+     */
     updateVelocity(deltaTime) {
         const maxVelocityX = 10.0;
         const maxVelocityY = 30.0;
@@ -147,22 +167,31 @@ class Character {
         this.moveY = 0.0;
     }
 
-    // rendering
+    /**
+     * This function sets the offset of a specific sprite, used for rendering.
+     * offsetX: the amount to offset x position 
+     * offsetY: the amount to offset the y position 
+     */
     setOffset(offsetX, offsetY) {
         this.sprite.position.set((32 * this.x) + offsetX - 16 - 16, -(32 * this.y) + offsetY + 16 -tileSize);
     }
 
+    /**
+     * This function sets the location of a specific sprite when respawning.
+     * x: x location of the sprite
+     * y: y location of the sprite
+     */
     setRespawn(x, y) {
         this.spawnX = x;
         this.spawnY = y;
     }
 
-    // returns the x location of the player sprite
+    // returns the x location of the sprite
     xLocation(){ 
         return this.x;
     }
 
-    // returns the y location of the player sprite
+    // returns the y location of the sprite
     yLocation(){ 
         return this.y;
     }

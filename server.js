@@ -1,6 +1,8 @@
-/*
-    Server side code to interact with the database.
-*/
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: server.js
+ * Server side code to interact with the database.
+ */
 
 const express = require('express');
 const mongoose = require('mongoose');

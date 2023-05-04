@@ -1,7 +1,9 @@
-/*
-    CSS Page for the landing screen, should be the same for both the game window,and
-    landing window. Pixi.js app window should be a child of the gameWindow
-*/
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: style.js
+ * CSS Page for the landing screen, should be the same for both the game window, and
+ * landing window. Pixi.js app window should be a child of the gameWindow
+ */
 
 body {
     margin: 0;

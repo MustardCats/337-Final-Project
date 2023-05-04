@@ -1,4 +1,9 @@
-let respawnTimer = 0.0;
+/**
+ * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
+ * File Name: respawn.js
+ * This class allows the character to respawn if they fall off a level or is hit 
+ * by an enemy.
+ */
 
 class Respawn {
     width = 2.0;
@@ -20,20 +25,28 @@ class Respawn {
         this.sprite.height = 32.0;
     }
 
+    /**
+     * This function checks if a sprite is within a hit box of another object/ sprite.
+     * player: the sprite that player is operating 
+     */
     checkIntersect(player) {
         if ((player.x > this.x - (this.width / 2.0) && player.x < this.x + (this.width / 2.0)) &&
-            (player.y > this.y - (this.height / 2.0) && player.y < this.y + (this.height / 2.0)))
-        {
+            (player.y > this.y - (this.height / 2.0) && player.y < this.y + (this.height / 2.0))) {
             player.setRespawn(this.respawnX, this.respawnY);
             player.x = this.respawnX;
             player.y = this.respawnY;
             if (this.isFinish) {
                 // post
-                fetch('')
+
             }
         }
     }
 
+    /**
+     * This function sets the offset of a specific sprite, used for rendering.
+     * offsetX: the amount to offset x position 
+     * offsetY: the amount to offset the y position 
+     */
     setOffset(offsetX, offsetY) {
         this.sprite.position.set((32 * this.x) + offsetX - 16 - 16, -(32 * this.y) + offsetY + 16 - tileSize);
     }
