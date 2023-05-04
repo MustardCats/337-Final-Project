@@ -78,7 +78,7 @@ async function startApp() {
     let delta = 0.0;
 
     // adds sprites to the stage
-    player = new Character(5, 10);
+    player = new Character(6, 10);
     enemy1 = new Level1Enemy(40, 13);
     enemy2 = new Level2Enemy(5,7);
     enemy3 = new Level3Enemy(6,8);
