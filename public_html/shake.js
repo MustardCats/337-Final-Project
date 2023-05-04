@@ -12,6 +12,9 @@ class shake {
     constructor(x, y) {
         this.x = x;
         this.y = y;
+        this.sprite = new PIXI.Sprite(spritesheet.textures['New Shake 1.png']);
+        this.sprite.width = 64;
+        this.sprite.height = 64;
     }
 
     // returns the x location of the sprite

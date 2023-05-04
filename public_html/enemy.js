@@ -9,8 +9,6 @@ class BasicEnemy {
     x = 0.0;
     y = 0.0;
     sprite = null;
-    spawnX = 5;
-    spawnY = 3;
     radius = 8;
     isLeft = true;
 
@@ -19,11 +17,18 @@ class BasicEnemy {
         this.y = y;
     }
 
-    kill() {
-        this.x = this.spawnX;
-        this.y = this.spawnY;
-        this.velocityX = 0.0;
-        this.velocityY = 0.0;
+    /**
+     * This function checks if a sprite is within a hit box of another object/ sprite.
+     * player: the sprite that player is operating 
+     */
+    checkIntersect(player) {
+        if ((player.x > this.x - (this.width / 2.0) && player.x < this.x + (this.width / 2.0)) &&
+            (player.y > this.y - (this.height / 2.0) && player.y < this.y + (this.height / 2.0)))
+        {
+            player.kill(this.respawnX, this.respawnY);
+            player.x = this.respawnX;
+            player.y = this.respawnY;
+        }
     }
 
     /**

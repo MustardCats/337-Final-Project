@@ -69,7 +69,7 @@ function handleInput(renderer, player, deltaTime) {
     if (isKeyPress('P')) { // prints out characters location 
         console.log("Player Pos: " + player.x + " " + player.y);
     }
-    if (isKeyPress('F')) { 
+    if (isKeyPress('F')) { // turns on debug mode
         player.toggleDebugMode();
     }
     if (isKeyPress('J')) {
