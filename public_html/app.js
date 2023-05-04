@@ -121,9 +121,12 @@ function addBackground() {
  * took the player to get through the game.
  */
 function calcScore() {
+    let score;
     if (score > maxTime) {
         score = 1000;
     } else {
         score += (deltaTime * 100);
     }
+
+    return score;
 }

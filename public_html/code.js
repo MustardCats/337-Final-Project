@@ -58,6 +58,11 @@ function noSpace() {
 }
 //Add on win, remove event listener
 
+/**
+ * 
+ * Adds the user to the database, is called when a user registers 
+ * @returns null, return is just used to exit the function
+ */
 function addUser() {
     let url = '/add/user';
     let u = document.getElementById('addUserField')
@@ -91,9 +96,11 @@ function addUser() {
     ps.value = '';
     exitPopup();
 }
-
+/**
+ * Logs the user out of the current session by getting rid of the cookies.
+ */
 function logout() {
-
+    let b = document.getElementById('loginButton').style.display = "none";
 }
 /**
  * /login/:user/:pass <-- URL format

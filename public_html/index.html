@@ -23,10 +23,10 @@
         </div>
         <div id="infoWindow">
             <div>
-                <button class="accountButton" onclick="logout()" style="display: none">Logout</button>
-                <button class="accountButton" onclick="showLoginPopup()">Login</button>
+                <button class="accountButton" id="loginButton" onclick="showLoginPopup()">Login</button>
                 <button class="accountButton" onclick="showAddUserPopup()">Register</button>
                 <span style="display:none;">Logged in as:</span>
+                <button class="accountButton" id="logoutButton" onclick="logout()" style="display: none">Logout</button>
             </div>
             <div id="instructions">
                 <h5 id="instruct">How to play:</h5>
