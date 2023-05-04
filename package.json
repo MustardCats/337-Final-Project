@@ -16,6 +16,7 @@
     "fs": "^0.0.1-security",
     "jsdelivr": "^0.1.2",
     "md5": "^2.3.0",
+    "mongod": "^2.0.0",
     "mongoose": "^7.0.3",
     "pixi-keyboard": "^1.0.0",
     "pixi.js": "^7.2.4",
