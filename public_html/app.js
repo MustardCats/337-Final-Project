@@ -48,6 +48,7 @@ function gameLoop() {
     deleteChunks(app, player.x, player.y);
     loadChunks(app, camX, camY, player.x, player.y);
     player.update(deltaTime);
+
     setCamPos(-(player.x * 32) + 375, (player.y * 32) + 250);
     setLevelCameraOffset(camX, camY);
     player.setOffset(camX, camY);
