@@ -53,7 +53,8 @@ function gameLoop() {
     enemy2.movement(deltaTime);
     enemy3.setOffset(camX, camY);
     enemy3.movement(deltaTime);
-    
+
+    respawnTimer += deltaTime;
     // render
     window.requestAnimationFrame(gameLoop);
 }

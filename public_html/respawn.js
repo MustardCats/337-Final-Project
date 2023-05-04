@@ -31,12 +31,11 @@ class Respawn {
      */
     checkIntersect(player) {
         if ((player.x > this.x - (this.width / 2.0) && player.x < this.x + (this.width / 2.0)) &&
-            (player.y > this.y - (this.height / 2.0) && player.y < this.y + (this.height / 2.0)))
-        {
+            (player.y > this.y - (this.height / 2.0) && player.y < this.y + (this.height / 2.0))) {
             player.setRespawn(this.respawnX, this.respawnY);
             player.x = this.respawnX;
             player.y = this.respawnY;
-            if (this.isFinish()) {
+            if (this.isFinish) {
                 // post
 
             }
