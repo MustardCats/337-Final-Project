@@ -62,7 +62,7 @@ function gameLoop() {
 
     shake1.setOffset(camX,camY);
     shake2.setOffset(camX,camY);
-    //shake3.setOffset(camX,camY);
+    shake3.setOffset(camX,camY);
 
 
     totalTime += deltaTime;
@@ -93,17 +93,17 @@ async function startApp() {
     player = new Character(6, 10);
     enemy1 = new Level1Enemy(40, 13);
     enemy2 = new Level2Enemy(185,4);
-    enemy3 = new Level3Enemy(6,8);
-    shake1 = new shake(75,3);
+    enemy3 = new Level3Enemy(300,3);
+    shake1 = new shake(75,2);
     shake2 = new shake(161,11);
-    //shake3 = new shake(0,0);
+    shake3 = new shake(248,6);
     app.stage.addChild(player.sprite);
     app.stage.addChild(enemy1.sprite);
     app.stage.addChild(enemy2.sprite);
     app.stage.addChild(enemy3.sprite);
     app.stage.addChild(shake1.sprite);
     app.stage.addChild(shake2.sprite);
-    //app.stage.addChild(shake3.sprite);
+    app.stage.addChild(shake3.sprite);
     for (let i = 0; i < respawns.length; i++) {
         app.stage.addChild(respawns[i].sprite);
     }

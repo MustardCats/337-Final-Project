@@ -12,7 +12,7 @@ class shake {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.sprite = new PIXI.Sprite(spritesheet.textures['New Shake 1.png']);
+        this.sprite = new PIXI.Sprite(spritesheet.textures['New Shake 2.png']);
         this.sprite.width = 64;
         this.sprite.height = 64;
     }
@@ -26,7 +26,7 @@ class shake {
     yLocation() {
         return this.y;
     }
-    
+
     /**
      * This function checks if a sprite is within a hit box of another object/ sprite.
      * player: the sprite that player is operating 
