@@ -1,3 +1,5 @@
+let respawnTimer = 0.0;
+
 class Respawn {
     width = 2.0;
     height = 2.0;
@@ -25,9 +27,9 @@ class Respawn {
             player.setRespawn(this.respawnX, this.respawnY);
             player.x = this.respawnX;
             player.y = this.respawnY;
-            if (this.isFinish()) {
+            if (this.isFinish) {
                 // post
-
+                fetch('')
             }
         }
     }
