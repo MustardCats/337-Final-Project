@@ -6,17 +6,18 @@
 body {
     margin: 0;
     height: 100vh;
-    background: url("./pageImages/bluesea.png") no-repeat;
+    background: url("./pageImages/cartoon-forest-environment-background-free-vector.png") no-repeat;
     background-color: #abcbff;
-    background-size: cover;
+    background-size: 100%;
 }
 
 #middleColumn {
     position: relative;
     width: 750px;
     height: 100%;
-    margin-top: 50%;
+    margin-top: 25%;
     margin-left: 50%;
+    margin-right: 50%;
     transform: translate(-50%, -50%);
     background-color: #abcbff;
 }
@@ -25,14 +26,14 @@ body {
     position: absolute;
     display: block;
     width: 100%;
-    height: 600px;
+    height: 500px;
     background: #ccbcf5;
     border: 2px dotted orange;
 }
 
 #gameWindow {
     position: absolute;
-    width: 500px;
+    width: 750px;
     height:500px;
     font-family:'Courier New', Courier, monospace;
     font-size: 2em;
@@ -41,7 +42,7 @@ body {
 #infoWindow {
     position: absolute;
     height: 40%;
-    top: 600px;
+    top: 500px;
     width:100%;
     border: 2px dotted red;
     background-color: rgb(168, 192, 243);

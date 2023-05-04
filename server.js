@@ -57,6 +57,21 @@ function authenticate(username,password) {
     return h;
 }
 
+app.get('/gameEnd/:id/:score', async (req,res) => {
+    let i = req.params.id;
+    let s = req.params.score;
+
+    let e = await User.exists({_id: i});
+    if(e) {
+        console.log('user exists')
+        let u = User.findOneAndUpdate({_id: i},{"$set": {score: s}}).exec();
+        res.end('score updated')
+    }else {
+        res.end('score failed to update');
+    }
+
+});
+
 app.get('/login/:user/:pass', async (req,res) => {
     let u = req.params.user;
     let p = req.params.pass;

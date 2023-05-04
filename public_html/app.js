@@ -83,7 +83,7 @@ async function startApp() {
  * Where you can change the background image of the canvas
  */
 function addBackground() {
-      var image = PIXI.Sprite.from('pageImages/bluesea.png');
+      var image = PIXI.Sprite.from('pageImages/clouds.png');
       app.stage.addChild(image);
 }
 

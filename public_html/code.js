@@ -93,6 +93,10 @@ function addUser() {
     exitPopup();
 }
 
+function logout() {
+
+}
+
 function loginGame() {
     let url = '/login/'
     let u = document.getElementById('loginUserField');
@@ -150,3 +154,27 @@ function clearFields() {
 setInterval( () => {
     //window.location.reload();
 },2000);
+/**
+ * Won't work properly unless the person is logged in, and they are considered logged in 
+ * if they have the cookie
+ * 
+ * /gameEnd/:id/:score <-- URL formatting
+ */
+function onGameEnd() {
+    let url = '/gameEnd/'
+    let score = calcScore();
+    let playerID = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("whoami="))
+    ?.split("=")[1];
+    url += playerID + "/" +score;
+    let p = fetch(url);
+    p.then((results) => {
+        return results.text();
+    }).then((text) => {
+        console.log(text);
+    }).catch((err) => {
+        console.log('error: ',err);
+    });
+
+}
