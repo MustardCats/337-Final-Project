@@ -63,7 +63,7 @@ function authenticate(username,password) {
  * This is where the Score of the user that is currently logged in get updated. 
  * fetched by onGameEnd
  */
-app.get('/gameEnd/:id/:score', async (req,res) => {
+app.get('/gameEnd/:id/:score', async (req, res) => {
     let i = req.params.id;
     let s = req.params.score;
     let check = User.find({_id:id}).exec();

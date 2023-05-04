@@ -20,6 +20,7 @@ let deltaTime = 0.0;
 let start = Date.now();
 let score = 0.0;
 let maxTime = 600;
+let totalTime = 0.0;
 let renderer = PIXI.autoDetectRenderer(app.width, app.height, {
     transparent: true
 });
@@ -64,7 +65,7 @@ function gameLoop() {
     //shake3.setOffset(camX,camY);
 
 
-    respawnTimer += deltaTime;
+    totalTime += deltaTime;
     // render
     window.requestAnimationFrame(gameLoop);
 }
@@ -121,10 +122,9 @@ function addBackground() {
  * This method calculates the player's score based on the time it 
  * took the player to get through the game.
  */
-function calcScore() {
-    if (score > maxTime) {
-        score = 1000;
-    } else {
-        score += (deltaTime * 100);
+function calcScore() { {}
+    if (totalTime > maxTime) {
+        return 0;
     }
+    return totalTime;
 }
