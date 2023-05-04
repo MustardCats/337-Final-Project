@@ -26,6 +26,7 @@ let renderer = PIXI.autoDetectRenderer(app.width, app.height, {
 });
 addBackground();
 
+// sprite variables 
 let player = null;
 let enemy1 = null;
 let enemy2 = null;
@@ -42,7 +43,6 @@ let lev3powerDash = null;
 
 /**  main game loop: 
  * this redraws the canvas
- * 
  */
 function gameLoop() {
     // time
@@ -58,19 +58,15 @@ function gameLoop() {
 
     setCamPos(-(player.x * 32) + 375, (player.y * 32) + 250);
     setLevelCameraOffset(camX, camY);
+
+    // sets offsets of sprites
     player.setOffset(camX, camY);
-
     enemy1.setOffset(camX, camY);
-    enemy1.movement(deltaTime);
     enemy2.setOffset(camX, camY);
-    enemy2.movement(deltaTime);
     enemy3.setOffset(camX, camY);
-    enemy3.movement(deltaTime);
-
     shake1.setOffset(camX, camY);
     shake2.setOffset(camX, camY);
     shake3.setOffset(camX, camY);
-
     lev1power.setOffset(camX, camY);
     lev1powerDash.setOffset(camX, camY);
     lev2power.setOffset(camX, camY);
@@ -78,11 +74,16 @@ function gameLoop() {
     lev3power.setOffset(camX, camY);
     lev3powerDash.setOffset(camX, camY);
 
+    // moves enemy sprites
+    enemy1.movement();
+    enemy2.movement();
+    enemy3.movement();
 
     totalTime += deltaTime;
     // render
     window.requestAnimationFrame(gameLoop);
 }
+
 /**
  * Function to start the PIXI.js application, handles
  * adding it to the DOM as well as starts up and applies other
@@ -103,30 +104,35 @@ async function startApp() {
     }
     let delta = 0.0;
 
-    // adds sprites to the stage
+    // creates sprites
     player = new Character(6, 10);
-    enemy1 = new Level1Enemy(40, 13);
-    enemy2 = new Level2Enemy(185, 4);
-    enemy3 = new Level3Enemy(300, 3);
+    enemy1 = new Level1Enemy(40, 12.75);
+    enemy2 = new Level2Enemy(185, 3.5);
+    enemy3 = new Level3Enemy(300, 2.75);
     shake1 = new shake(75, 2);
     shake2 = new shake(161, 11);
     shake3 = new shake(248, 6);
+    
+    // creates power up sprites
+    lev1power = new growth(19, 4.5);
+    lev1powerDash = new dash(55.25, 10.25);
+    lev2power = new growth(182, 3.25);
+    lev2powerDash = new dash(140, 3.25);
+    lev3power = new growth(227, 5.5);
+    lev3powerDash = new dash(288, 2.5);
 
-    lev1power = new growth(19, 5);
-    lev1powerDash = new dash(55, 11);
-    lev2power = new growth(180, 4);
-    lev2powerDash = new dash(140, 4);
-    lev3power = new growth(228, 7);
-    lev3powerDash = new dash(288, 3);
-
+    // adds sprites to game 
     app.stage.addChild(player.sprite);
     app.stage.addChild(enemy1.sprite);
     app.stage.addChild(enemy2.sprite);
     app.stage.addChild(enemy3.sprite);
+    
+    // adds shakes to game
     app.stage.addChild(shake1.sprite);
     app.stage.addChild(shake2.sprite);
     app.stage.addChild(shake3.sprite);
 
+    // adds powerups to game
     app.stage.addChild(lev1power.sprite);
     app.stage.addChild(lev1powerDash.sprite);
     app.stage.addChild(lev2power.sprite);
@@ -148,6 +154,7 @@ function addBackground() {
     var image = PIXI.Sprite.from('pageImages/clouds.png');
     app.stage.addChild(image);
 }
+
 /**
  * This method calculates the player's score based on the time it 
  * took the player to get through the game.

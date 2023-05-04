@@ -49,7 +49,9 @@ class BasicEnemy {
         return this.y;
     }
 }
-
+/** This class is the object representation of the Level 1 Enemy sprite.
+ * This class sets the movement of the sprite and how fast it is moving
+ */
 class Level1Enemy extends BasicEnemy {
 
     constructor(x, y) {
@@ -60,15 +62,15 @@ class Level1Enemy extends BasicEnemy {
     }
 
     /** moves the level one enemy in a set path from left to right. 
-     * The level 1 enemy moves 5 pixels in either direction.
+     * The level 1 enemy moves 14 pixels in either direction.
      */
     movement() {
-        if (this.x <= 38) {
+        if (this.x <= 39) {
             this.x += (2 / 10);
             this.isLeft = false;
-        } else if (this.x > 38 && this.x < 53 && (this.isLeft != true)) {
+        } else if (this.x > 39 && this.x < 53 && (this.isLeft != true)) {
             this.x += (2 / 10);
-        } else if (this.x > 38 && this.x < 53 && (this.isLeft == true)) {
+        } else if (this.x > 39 && this.x < 53 && (this.isLeft == true)) {
             this.x -= (1 / 10);
         } else if (this.x >= 53) {
             this.isLeft = true;
@@ -77,6 +79,9 @@ class Level1Enemy extends BasicEnemy {
     }
 }
 
+/** This class is the object representation of the Level 2 Enemy sprite.
+ * This class sets the movement of the sprite and how fast it is moving
+ */
 class Level2Enemy extends BasicEnemy {
 
     constructor(x, y) {
@@ -85,7 +90,9 @@ class Level2Enemy extends BasicEnemy {
         this.sprite.width = 64;
         this.sprite.height = 64;
     }
-    /** moves the level 2 enemy in a set path in the shape of a rectangle. */
+    /** moves the level two enemy in a set path from left to right. 
+     * The level 2 enemy moves 20 pixels in either direction.
+     */
     movement() {
         if (this.x <= 180 ) {
             this.x += (2 / 10);
@@ -103,7 +110,9 @@ class Level2Enemy extends BasicEnemy {
     }
 }
 
-
+/** This class is the object representation of the Level 3 Enemy sprite.
+ * This class sets the movement of the sprite and how fast it is moving
+ */
 class Level3Enemy extends BasicEnemy{
 
     constructor(x,y){
@@ -113,7 +122,9 @@ class Level3Enemy extends BasicEnemy{
         this.sprite.height = 64;
     }
 
-    /** moves the level 3 enemy in a set path in the shape of a rectangle. */
+    /** moves the level three enemy in a set path from left to right. 
+     * The level 3 enemy moves 20 pixels in either direction.
+     */
     movement() {
         if (this.x <= 280) {
             this.x += (1 / 10);
