@@ -5,6 +5,8 @@
  * by an enemy.
  */
 
+let respawnTimer = 0.0;
+
 class Respawn {
     width = 2.0;
     height = 2.0;
