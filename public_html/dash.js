@@ -9,13 +9,11 @@
 class dash {
   x = 0;
   y = 0;
-  player = null;
 
 
-  constructor(x, y, player) {
+  constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.player = player;
   }
 
   /**

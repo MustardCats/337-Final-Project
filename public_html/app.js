@@ -33,6 +33,12 @@ let enemy3 = null;
 let shake1 = null;
 let shake2 = null;
 let shake3 = null;
+let lev1power = null;
+let lev1powerDash = null;
+let lev2power = null;
+let lev2powerDash = null;
+let lev3power = null;
+let lev3powerDash = null;
 
 /**  main game loop: 
  * this redraws the canvas
@@ -53,6 +59,7 @@ function gameLoop() {
     setCamPos(-(player.x * 32) + 375, (player.y * 32) + 250);
     setLevelCameraOffset(camX, camY);
     player.setOffset(camX, camY);
+
     enemy1.setOffset(camX, camY);
     enemy1.movement(deltaTime);
     enemy2.setOffset(camX, camY);
@@ -63,6 +70,13 @@ function gameLoop() {
     shake1.setOffset(camX,camY);
     shake2.setOffset(camX,camY);
     shake3.setOffset(camX,camY);
+
+    lev1power.setOffset(camX,camY);
+    lev1powerDash.setOffset(camX,camY);
+    lev2power.setOffset(camX,camY);
+    lev2powerDash.setOffset(camX,camY);
+    lev3power.setOffset(camX,camY);
+    lev3powerDash.setOffset(camX,camY);
 
 
     totalTime += deltaTime;
@@ -97,6 +111,14 @@ async function startApp() {
     shake1 = new shake(75,2);
     shake2 = new shake(161,11);
     shake3 = new shake(248,6);
+
+    lev1power = new growth(19, 5);
+    lev1powerDash = new dash(55, 11);
+    lev2power = new growth(180, 4);
+    lev2powerDash = new dash(140, 4);
+    lev3power = new growth(228, 7);
+    lev3powerDash = new dash(288, 3);
+
     app.stage.addChild(player.sprite);
     app.stage.addChild(enemy1.sprite);
     app.stage.addChild(enemy2.sprite);
@@ -104,6 +126,13 @@ async function startApp() {
     app.stage.addChild(shake1.sprite);
     app.stage.addChild(shake2.sprite);
     app.stage.addChild(shake3.sprite);
+    
+    app.stage.addChild(lev1power.sprite);
+    app.stage.addChild(lev1powerDash.sprite);
+    app.stage.addChild(lev2power.sprite);
+    app.stage.addChild(lev2powerDash.sprite);
+    app.stage.addChild(lev3power.sprite);
+    app.stage.addChild(lev3powerDash.sprite);
     for (let i = 0; i < respawns.length; i++) {
         app.stage.addChild(respawns[i].sprite);
     }
