@@ -2,6 +2,9 @@
 
 Installation Instructions
 
+Install mongoose by running the command:
+npm install mongoose
+
 Install PixiJS by running the command:
 npm install pixi.js
 
