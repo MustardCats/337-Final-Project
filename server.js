@@ -71,11 +71,11 @@ app.get('/gameEnd/:id/:score', async (req, res) => {
     let check = User.find({_id:i}).exec();
     check.then(async (results) =>  {
         if(check != null) {
-            console.log('Document results: ',results);
-            console.log('user curr score', results[0].bestTime);
+            //console.log('Document results: ',results);
+            //console.log('user curr score', results[0].bestTime);
             if(results[0].bestTime > s || results[0].bestTime == 0) {
                 
-                console.log('adding score ',s);
+                //console.log('adding score ',s);
                 let u = await User.findOneAndUpdate({_id:i},{bestTime: s}).exec();
             }
             res.end('score updated')
@@ -86,8 +86,17 @@ app.get('/gameEnd/:id/:score', async (req, res) => {
 
 });
 
+app.get('/scores',async (req,res) => {
+    let arr2 = await User.find({}).sort({bestTime: 1}).limit(5).exec();
+    let arr = await User.find({username: {$exists:true},bestTime: {$exists:true}}).exec();
+    console.log(arr2);
+    console.log('array of users: ',arr);
+    res.end(JSON.stringify(arr2));
+});
+
+
 app.get('/login/:user/:pass', async (req,res) => {
-    let u = req.params.user;
+    let u = req.params.user;    
     let p = req.params.pass;
     let h = authenticate(u,p);
     console.log(h);
@@ -116,9 +125,11 @@ app.post('/add/user',async (req,res) => {
     let u = req.body.username;
     let p = req.body.password;
     let hash = authenticate(u,p);
-    let check = User.find({hashedPsw:hash}).exec(); 
+    let check =  User.find({hashedPsw:hash}).exec(); 
+    
     check.then((doc) => {
-        if(doc != null) {
+        console.log(doc);
+        if(doc.length != 0) {
             res.end('no');
         }else if(u == '') {
             //If there is no username do nothing

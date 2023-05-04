@@ -101,7 +101,7 @@ function addUser() {
  */
 function logout() {
     let b = document.getElementById('loginButton').style.display = "block";
-    let 
+    createCookie("whoami","",-1);
 }
 /**
  * /login/:user/:pass <-- URL format
@@ -133,6 +133,47 @@ function loginGame() {
         exitPopup();
     }
     
+}
+
+function updateScores() {
+    let p = fetch('/scores');
+    p.then((results) => {
+        return results.text();
+    }).then((text) => {
+        let parsed = JSON.parse(text);
+        let counterName = 0;
+        let counterScore = 0;
+        console.log('parsed obj?',parsed);
+        console.log(parsed[0]);
+        console.log(parsed[0].bestTime);
+        Array.from(document.querySelectorAll('.nameCol')).forEach(function (nameCol) {
+            if(counterName > 4) {
+                return;
+            }
+            while(parsed[counterName].bestTime == 0) {
+                counterName++;
+            }
+            nameCol.innerHTML = parsed[counterName].username;
+            counterName++;
+        })
+        
+        let highscoreListScore = document.getElementsByClassName('scoreCol');
+
+        Array.from(document.querySelectorAll('.scoreCol')).forEach(function (scoreCol) {
+            if(counterScore > 4) {
+                return;
+            }
+            while(parsed[counterScore].bestTime == 0) {
+                counterScore++;
+            }
+            scoreCol.innerHTML = parsed[counterScore].bestTime;
+            counterScore++;
+        })
+        
+
+    }).catch ((err) => {
+        console.log(err);
+    });
 }
 
 function setUpListeners() {
@@ -202,4 +243,5 @@ function onGameEnd() {
     }).catch((err) => {
         console.log('error: ',err);
     });
+    updateScores();
 }
