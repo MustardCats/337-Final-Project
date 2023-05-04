@@ -14,9 +14,19 @@ const connection_string = 'mongodb://127.0.0.1/GameDB'
 const port = 3000;
 const app = express();
 
-app.use(express.static('public_html'));
+const cookieValid = function(req,res,next) {
+    if(req.cookies) {
+        req.cookieExists = true;
+    }else {
+        req.cookieExists = false;
+    }
+    next()
+}
 
+app.use(express.static('public_html'));
+app.use(cookieParser());
 app.use(express.json());
+app.use(cookieValid);
 
 mongoose.connect(connection_string, {useNewUrlParser: true});
 mongoose.connection.on('error',() => {
@@ -49,15 +59,64 @@ function authenticate(username,password) {
     return h;
 }
 
+/**
+ * This is where the Score of the user that is currently logged in get updated. 
+ * fetched by onGameEnd
+ */
+app.get('/gameEnd/:id/:score', async (req,res) => {
+    let i = req.params.id;
+    let s = req.params.score;
+    let check = User.find({_id:id}).exec();
+    check.then((results) => {
+        if(check != null) {
+            let u = User.findOneAndUpdate({_id: i},{"$set": {score: s}}).exec();
+            res.end('score updated')
+        }else {
+            res.end('Need to login!');
+        }
+    });
+
+});
+
+app.get('/login/:user/:pass', async (req,res) => {
+    let u = req.params.user;
+    let p = req.params.pass;
+    let h = authenticate(u,p);
+    console.log(h);
+        let l = User.findOne({hashedPsw:h}).exec();
+        l.then((results) => {
+            if(results == null) {
+                res.end('fail to login');
+            }else {
+                console.log(l);
+                console.log(results);
+                console.log(results._id);
+                console.log('results in login:',results);
+                let sessId = results._id.toString();
+                console.log(sessId);
+                res.cookie("whoami",sessId,{maxAge: 1800000})
+                res.end('login success');
+            }
+            
+        }).catch((err) =>{
+            console.log(err);
+            res.end('login fail');
+        });
+});
+
 app.post('/add/user',async (req,res) => {
     let u = req.body.username;
     let p = req.body.password;
     let hash = authenticate(u,p);
+    let check = User.find({hashedPsw:hash}).exec(); 
+    check.then((doc) => {
+        if(doc == null) {
+            res.end('Cannot make that user');
+        }else if(u == '') {
+            //If there is no username do nothing
+            res.end('No username, cannnot add user');
+        }else {
 
-    let e = await User.exists({hashedPsw: hash});
-    if(e) {
-        res.end('Cannot make that user');
-    }else {
         //I do the check for username and etc client side.
         var user = new User( {
             bestTime: 0,
@@ -68,15 +127,17 @@ app.post('/add/user',async (req,res) => {
 
         let prom = user.save();//We wait for the user to be saved into the DB
         prom.then((doc)=>{
+            //We don't send cookies on user creation
+            //They have to login again
             console.log('user saved');
             
         }).catch((err) => {
             console.log(err);
             res.end('user failed to create');
         })
-        res.end('User saved');
-        //We add cookie functionality later
-    }
+            //We add cookie functionality later
+        }
+    });
 });
 
 app.use(bodyParser.json());
