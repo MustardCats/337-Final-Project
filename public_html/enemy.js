@@ -87,9 +87,8 @@ class Level2Enemy extends BasicEnemy {
     }
     /** moves the level 2 enemy in a set path in the shape of a rectangle. */
     movement() {
-        if (this.x <= 180 && this.y <= 4) {
+        if (this.x <= 180 ) {
             this.x += (2 / 10);
-            this.y += 2;
             this.isLeft = false;
         } else if (this.x > 180 && this.x < 200 && (this.isLeft != true)) {
             this.x += (2 / 10);
@@ -97,10 +96,9 @@ class Level2Enemy extends BasicEnemy {
         } else if (this.x > 180 && this.x < 200 && (this.isLeft == true)) {
             this.x -= (2.5 / 10);
 
-        } else if (this.x >= 200 && this.y>= 10) {
+        } else if (this.x >= 200) {
             this.isLeft = true;
             this.x -= (2.5 / 10);
-            this.y -= 2;
         }
     }
 }
