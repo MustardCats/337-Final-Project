@@ -14,6 +14,9 @@ class dash {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.sprite = new PIXI.Sprite(spritesheet.textures['powerup1.png']);
+        this.sprite.width = 64;
+        this.sprite.height = 64;
   }
 
   /**

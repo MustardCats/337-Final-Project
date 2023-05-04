@@ -10,7 +10,7 @@
 const Application = PIXI.Application;
 
 // creates the canvas
-const app = new Application( {
+const app = new Application({
     width: 750,
     height: 500
 });
@@ -28,7 +28,7 @@ addBackground();
 
 let player = null;
 let enemy1 = null;
-let enemy2 = null; 
+let enemy2 = null;
 let enemy3 = null;
 let shake1 = null;
 let shake2 = null;
@@ -67,16 +67,16 @@ function gameLoop() {
     enemy3.setOffset(camX, camY);
     enemy3.movement(deltaTime);
 
-    shake1.setOffset(camX,camY);
-    shake2.setOffset(camX,camY);
-    shake3.setOffset(camX,camY);
+    shake1.setOffset(camX, camY);
+    shake2.setOffset(camX, camY);
+    shake3.setOffset(camX, camY);
 
-    lev1power.setOffset(camX,camY);
-    lev1powerDash.setOffset(camX,camY);
-    lev2power.setOffset(camX,camY);
-    lev2powerDash.setOffset(camX,camY);
-    lev3power.setOffset(camX,camY);
-    lev3powerDash.setOffset(camX,camY);
+    lev1power.setOffset(camX, camY);
+    lev1powerDash.setOffset(camX, camY);
+    lev2power.setOffset(camX, camY);
+    lev2powerDash.setOffset(camX, camY);
+    lev3power.setOffset(camX, camY);
+    lev3powerDash.setOffset(camX, camY);
 
 
     totalTime += deltaTime;
@@ -106,11 +106,11 @@ async function startApp() {
     // adds sprites to the stage
     player = new Character(6, 10);
     enemy1 = new Level1Enemy(40, 13);
-    enemy2 = new Level2Enemy(185,4);
-    enemy3 = new Level3Enemy(300,3);
-    shake1 = new shake(75,2);
-    shake2 = new shake(161,11);
-    shake3 = new shake(248,6);
+    enemy2 = new Level2Enemy(185, 4);
+    enemy3 = new Level3Enemy(300, 3);
+    shake1 = new shake(75, 2);
+    shake2 = new shake(161, 11);
+    shake3 = new shake(248, 6);
 
     lev1power = new growth(19, 5);
     lev1powerDash = new dash(55, 11);
@@ -126,13 +126,14 @@ async function startApp() {
     app.stage.addChild(shake1.sprite);
     app.stage.addChild(shake2.sprite);
     app.stage.addChild(shake3.sprite);
-    
+
     app.stage.addChild(lev1power.sprite);
     app.stage.addChild(lev1powerDash.sprite);
     app.stage.addChild(lev2power.sprite);
     app.stage.addChild(lev2powerDash.sprite);
     app.stage.addChild(lev3power.sprite);
     app.stage.addChild(lev3powerDash.sprite);
+
     for (let i = 0; i < respawns.length; i++) {
         app.stage.addChild(respawns[i].sprite);
     }
@@ -144,14 +145,15 @@ async function startApp() {
  * Where you can change the background image of the canvas
  */
 function addBackground() {
-      var image = PIXI.Sprite.from('pageImages/clouds.png');
-      app.stage.addChild(image);
+    var image = PIXI.Sprite.from('pageImages/clouds.png');
+    app.stage.addChild(image);
 }
 /**
  * This method calculates the player's score based on the time it 
  * took the player to get through the game.
  */
-function calcScore() { {}
+function calcScore() {
+    { }
     if (totalTime > maxTime) {
         return 0;
     }
