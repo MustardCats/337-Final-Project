@@ -1,7 +1,7 @@
 /**
  * Author: Patrick Comden, Patrick Hsu, and Caitlin Wong 
  * File Name: sprites.js
- * This class represents the different sprite pictures that are used throughout the game. 
+ * This class links the different sprite pictures to the game. 
  * We used https://pixijs.io/guides/basics/sprite-sheets.html to figure out how to 
  * use a spritesheet.
  */

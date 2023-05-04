@@ -26,14 +26,20 @@ class BasicEnemy {
         this.velocityY = 0.0;
     }
 
+    /**
+     * This function sets the offset of a specific sprite, used for rendering.
+     * offsetX: the amount to offset x position 
+     * offsetY: the amoutn to offset the y position 
+     */
     setOffset(offsetX, offsetY) {
         this.sprite.position.set((32 * this.x) + offsetX - 16 - 16, -(32 * this.y) + offsetY + 16 - tileSize);
     }
-
+    // returns the x location of the sprite
     xLocation(){
         return this.x;
     }
 
+    // returns the y location of the sprite
     yLocation(){ 
         return this.y;
     }
@@ -105,6 +111,7 @@ class Level3Enemy extends BasicEnemy{
         this.sprite.height = 64;
     }
 
+    /** moves the level 3 enemy in a set path in the shape of a rectangle. */
     movement() {
         if (this.x <= 5) {
             this.x += (2 / 10);
