@@ -96,7 +96,9 @@ function addUser() {
 function logout() {
 
 }
-
+/**
+ * /login/:user/:pass <-- URL format
+ */
 function loginGame() {
     let url = '/login/'
     let u = document.getElementById('loginUserField');
@@ -106,6 +108,15 @@ function loginGame() {
     if(u.value == '' || ps.value == '') {
         alert("Fields cannot be empty!");
     }else {
+        url += u.value + "/" + ps.value;
+        let p = fetch(url);
+        p.then((results) => {
+            return results.text();
+        }).then((text) => {
+            console.log(text);
+        }).catch((err) => {
+            console.log(err);
+        });
         console.log('exiting popup');
         exitPopup();
     }
@@ -154,9 +165,10 @@ function clearFields() {
 setInterval( () => {
     //window.location.reload();
 },2000);
+
 /**
  * Won't work properly unless the person is logged in, and they are considered logged in 
- * if they have the cookie
+ * if they have the cookie, handles the game ending stuff. 
  * 
  * /gameEnd/:id/:score <-- URL formatting
  */
@@ -176,5 +188,4 @@ function onGameEnd() {
     }).catch((err) => {
         console.log('error: ',err);
     });
-
 }
