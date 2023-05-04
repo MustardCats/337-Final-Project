@@ -89,8 +89,8 @@ app.get('/gameEnd/:id/:score', async (req, res) => {
 app.get('/scores',async (req,res) => {
     let arr2 = await User.find({}).sort({bestTime: 1}).limit(5).exec();
     let arr = await User.find({username: {$exists:true},bestTime: {$exists:true}}).exec();
-    console.log(arr2);
-    console.log('array of users: ',arr);
+    //console.log(arr2);
+    //console.log('array of users: ',arr);
     res.end(JSON.stringify(arr2));
 });
 
@@ -103,7 +103,7 @@ app.get('/login/:user/:pass', async (req,res) => {
         let l = User.findOne({hashedPsw:h}).exec();
         l.then((results) => {
             if(results == null) {
-                res.end('fail to login');
+                res.end('login fail');
             }else {
                 console.log(l);
                 console.log(results);

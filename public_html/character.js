@@ -134,7 +134,7 @@ class Character {
         }
         else {
             this.debugMode = true;
-            onGameEnd();
+            //onGameEnd();
         }
     }
 

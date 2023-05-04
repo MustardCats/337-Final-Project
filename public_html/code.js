@@ -48,8 +48,12 @@
 // }
 
 setUpListeners();
+window.onload = (event) => {
+    updateScores();
+  };
 
-function noSpace() {
+
+  function noSpace() {
     window.addEventListener('keydown', function(e) {
         if(e.code === "Space" && e.target === document.body) {
           e.preventDefault();
@@ -120,6 +124,9 @@ function loginGame() {
         p.then((results) => {
             return results.text();
         }).then((text) => {
+            if(text == 'login fail') {
+                alert('failed to login');
+            }
             console.log(text);
         }).catch((err) => {
             console.log(err);
@@ -157,7 +164,6 @@ function updateScores() {
             counterName++;
         })
         
-        let highscoreListScore = document.getElementsByClassName('scoreCol');
 
         Array.from(document.querySelectorAll('.scoreCol')).forEach(function (scoreCol) {
             if(counterScore > 4) {
