@@ -138,7 +138,7 @@ app.post('/add/user',async (req,res) => {
 
         //I do the check for username and etc client side.
         var user = new User( {
-            bestTime: 0,
+            bestTime: 9999,
             username: u,
             hashedPsw: hash,
             levelProg: 0
