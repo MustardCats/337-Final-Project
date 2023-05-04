@@ -17,36 +17,46 @@
     <script src="./character.js"></script>
     <script src="./app.js"></script>
  */
-function loadGame() {
-    console.log(document.readyState);
-    var scripts = [
-        './sprites.js',
-        './enemy.js',
-        './respawn.js',
-        './camera.js',
-        './input.js',
-        './chunk.js',
-        './character.js',
-        './level.js',
-        './app.js'
-    ];
-    scripts.forEach(script => {
-        console.log(script);
-        var scriptToAdd = document.createElement('script');
-        scriptToAdd.setAttribute('src', script);
-        scriptToAdd.setAttribute('async', false);
-        document.body.appendChild(scriptToAdd);
-        scriptToAdd.addEventListener("load", () => {
-            console.log(`${script} loaded`)
-        });
+// function loadGame () {
+//     console.log(document.readyState);
+//     var scripts = [
+//         './sprites.js',
+//         './respawn.js',
+//         './camera.js',
+//         './input.js',
+//         './chunk.js',
+//         './character.js',
+//         './level.js',
+//         './app.js'
+//     ];
+//     scripts.forEach(script => {
+//         console.log(script);
+//         var scriptToAdd = document.createElement('script');
+//         scriptToAdd.setAttribute('src',script);
+//         scriptToAdd.setAttribute('async',false);  
+//         document.body.appendChild(scriptToAdd);
+//         scriptToAdd.addEventListener("load", () => {
+//             console.log(`${script} loaded`)
+//         });
+        
+//         scriptToAdd.addEventListener("error", (ev) => {
+//             console.log("Error on loading file", ev);
+//         });
+//     });
+//     document.getElementById('playGameButton').style.display = "none";
+//     console.log(document.readyState);
+// }
 
-        scriptToAdd.addEventListener("error", (ev) => {
-            console.log("Error on loading file", ev);
-        });
-    });
-    document.getElementById('playGameButton').style.display = "none";
-    console.log(document.readyState);
+setUpListeners();
+
+function noSpace() {
+    window.addEventListener('keydown', function(e) {
+        if(e.code === "Space" && e.target === document.body) {
+          e.preventDefault();
+        }
+      });
 }
+//Add on win, remove event listener
 
 function addUser() {
     let url = '/add/user';
@@ -54,6 +64,7 @@ function addUser() {
     let ps = document.getElementById('addUserPassword');
     if (u.value == '' || ps.value == '') {
         console.log('Fields cannot be empty');
+        alert("Fields cannot be empty!");
         return;
     }
     let p = fetch(url, {
@@ -81,12 +92,54 @@ function addUser() {
     exitPopup();
 }
 
-function login() {
+function logout() {
+
+}
+/**
+ * /login/:user/:pass <-- URL format
+ */
+function loginGame() {
     let url = '/login/'
+    let u = document.getElementById('loginUserField');
+    let ps = document.getElementById('loginUserPassword');
+    console.log(u.value);
+    console.log(ps.value);
+    if(u.value == '' || ps.value == '') {
+        alert("Fields cannot be empty!");
+    }else {
+        url += u.value + "/" + ps.value;
+        let p = fetch(url);
+        p.then((results) => {
+            return results.text();
+        }).then((text) => {
+            console.log(text);
+        }).catch((err) => {
+            console.log(err);
+        });
+        console.log('exiting popup');
+        exitPopup();
+    }
+    
+}
+
+function setUpListeners() {
+    let pswPop = document.getElementById('loginUserPassword');
+    pswPop.addEventListener('keydown', (event) => {
+        if(event.code === "Enter") {
+            document.getElementById('loginButton').click();
+        }
+    });
+    let addPop = document.getElementById('addUserPassword');
+    addPop.addEventListener('keydown', (event) => {
+        if(event.code === "Enter") {
+            document.getElementById('addUserButton').click();
+        }
+    });
 }
 
 function showLoginPopup() {
     document.getElementById('loginPopup').style.display = "block";
+    
 }
 
 function showAddUserPopup() {
@@ -98,5 +151,40 @@ function showAddUserPopup() {
 function exitPopup() {
     Array.from(document.querySelectorAll('.container-popup')).forEach(function (popup) {
         popup.style.display = "none";
+    });
+    clearFields();
+}
+
+function clearFields() {
+    Array.from(document.querySelectorAll('.accountFormCell')).forEach(function(inputField) {
+        inputField.value = '';
+    });
+}
+
+setInterval( () => {
+    //window.location.reload();
+},2000);
+
+/**
+ * Won't work properly unless the person is logged in, and they are considered logged in 
+ * if they have the cookie, handles the game ending stuff. 
+ * 
+ * /gameEnd/:id/:score <-- URL formatting
+ */
+function onGameEnd() {
+    let url = '/gameEnd/'
+    let score = calcScore();
+    let playerID = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("whoami="))
+    ?.split("=")[1];
+    url += playerID + "/" +score;
+    let p = fetch(url);
+    p.then((results) => {
+        return results.text();
+    }).then((text) => {
+        console.log(text);
+    }).catch((err) => {
+        console.log('error: ',err);
     });
 }

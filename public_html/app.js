@@ -20,7 +20,11 @@ let deltaTime = 0.0;
 let start = Date.now();
 let score = 0.0;
 let maxTime = 600;
-let renderer = PIXI.autoDetectRenderer(app.width, app.height);
+let renderer = PIXI.autoDetectRenderer(app.width, app.height, {
+    transparent: true
+});
+addBackground();
+
 let player = null;
 let enemy1 = null;
 let enemy2 = null; 
@@ -92,6 +96,14 @@ async function startApp() {
     }
 
     gameLoop();
+}
+
+/**
+ * Where you can change the background image of the canvas
+ */
+function addBackground() {
+      var image = PIXI.Sprite.from('pageImages/clouds.png');
+      app.stage.addChild(image);
 }
 /**
  * This method calculates the player's score based on the time it 

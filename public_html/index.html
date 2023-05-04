@@ -18,11 +18,12 @@
         <div id="gameWindowPlaceHolder">
             
             <div id="gameWindow">
-                <button id="playGameButton" onclick="startApp()">play game</button>
+                <button id="playGameButton" onclick="startApp();noSpace()">play game</button>
             </div>
         </div>
         <div id="infoWindow">
             <div>
+                <button class="accountButton" onclick="logout()" style="display: none">Logout</button>
                 <button class="accountButton" onclick="showLoginPopup()">Login</button>
                 <button class="accountButton" onclick="showAddUserPopup()">Register</button>
                 <span style="display:none;">Logged in as:</span>
@@ -31,6 +32,7 @@
                 <h5 id="instruct">How to play:</h5>
                 <div>A-S: To move left and right</div>    
                 <div>W: To jump</div>  
+                <div>F: To toggle debug mode!</div>
                 
             </div>
 
@@ -39,7 +41,8 @@
                     <tr>
                         <th>Rank </th>
                         <th class="nameCol">User</th>
-                        <th class="scoreCol">0:00:00</th>
+                        <th class="scoreCol">-:--:--</th>
+                        <th class="levelCol">Level</th>
                     </tr>
                     <tr>
                         <td>1.</td>
@@ -87,21 +90,21 @@
             <div class="popup-border">
                 <form class="accountForm">
                     <p class="accountFormRow">
-                        <label class="accountFormCell" id="loginUserFieldLabel" for="addUserField" >Username:</label>
+                        <label class="accountFormCellLabel" id="loginUserFieldLabel" for="addUserField" >Username:</label>
                         <input class="accountFormCell" type="text" placeholder="ex: JohnDoe" name="loginUserField" id="loginUserField">
                     </p>
                     <p class="accountFormRow">
-                        <label class="accountFormCell" id="loginUserPasswordLabel" for="loginUserPassword" >Password:</label>
+                        <label class="accountFormCellLabel" id="loginUserPasswordLabel" for="loginUserPassword" >Password:</label>
                         <input class="accountFormCell" type="password" placeholder="ex: ex@mple2023" name="loginUserPassword" id="loginUserPassword">
                     </p>
                 </form>
             </div>
             <div>
-               
+                <img class="buffKirby" src="./pageImages/BuffKirby2.png">
                 <img onclick="exitPopup()" class="exitImage" src="./images/xImage.png">
             </div>
             <div class="popup-button-container">
-                <button class = "accountConfirmationButton" onclick="exitPopup()">Login</button>
+                <button class = "accountConfirmationButton" id="loginButton" onclick="loginGame()">Login</button>
                 
             </div>
         </div>
@@ -113,20 +116,21 @@
             <div class="popup-border">
                 <form class="accountForm">
                     <p class="accountFormRow">
-                        <label class="accountFormCell" id="addUserFieldLabel" for="addUserField" >Username:</label>
+                        <label class="accountFormCellLabel" id="addUserFieldLabel" for="addUserField" >Username:</label>
                         <input class="accountFormCell" type="text" placeholder="ex: JohnDoe" name="addUserField" id="addUserField">
                     </p>
                     <p class="accountFormRow">
-                        <label class="accountFormCell" id="addUserPasswordLabel" for="addUserPassword" >Password:</label>
+                        <label class="accountFormCellLabel" id="addUserPasswordLabel" for="addUserPassword" >Password:</label>
                         <input class="accountFormCell" type="password" placeholder="ex: ex@mple2023" name="addUserPassword" id="addUserPassword">
                     </p>
                 </form>
             </div>
             <div> 
+                <img class="buffKirby" src="./pageImages/BuffKirby2.png">
                 <img onclick="exitPopup()" class="exitImage" src="./images/xImage.png">
             </div>
             <div class="popup-button-container">
-                <button class = "accountConfirmationButton"  onclick="addUser()">Register</button>
+                <button class = "accountConfirmationButton" id="addUserButton" onclick="addUser()">Register</button>
             </div>
         </div>
     </div>
